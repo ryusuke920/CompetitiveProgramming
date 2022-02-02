@@ -1,0 +1,1 @@
+print(*[chr((ord(j) - 65 - (i + 1) + 26 ** 5) % 26 + 65) for i, j in enumerate(input())], sep='')

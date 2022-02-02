@@ -1,0 +1,5 @@
+n = int(input())
+a = list(map(int, input().split()))
+a.sort(reverse=True)
+ans = sum(a[2 * i] * a[2 * i + 1] for i in range(n))
+print(ans)
