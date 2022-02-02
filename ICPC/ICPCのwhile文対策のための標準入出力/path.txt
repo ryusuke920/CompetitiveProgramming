@@ -1,0 +1,1 @@
+"/Users/ryusuke/Documents/Atcoder/ICPCのwhile文対策のための標準入出力/input.txt"
