@@ -121,3 +121,9 @@ I have solved as competitive programming.
 **これが全部解けたら、自信をもって「水色コーダー相当の実力」があるといってよいです。**
 
 <hr>
+
+## [競プロ典型90問](https://github.com/ryusuke920/kyopro_educational_90_python)
+
+- このリポジトリには置いていませんが、上記リンクをたどっていただければ、専用のリポジトリがあります。
+
+<hr>
