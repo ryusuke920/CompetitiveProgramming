@@ -1,0 +1,2 @@
+sx, sy, gx, gy = map(int,input().split())
+print("R" * (gx - sx) + "U" * (gy - sy) + "L" * (gx - sx) + "D" * (gy - sy) + "L" + "U" * (gy - sy + 1) + "R" * (gx - sx + 1) + "D" + "R" + "D" * (gy - sy + 1) + "L" * (gx - sx + 1) + "U")

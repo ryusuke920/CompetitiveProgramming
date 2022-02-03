@@ -1,0 +1,5 @@
+n = int(input())
+if n == 4 or n == 7 or n == 8 or n == 11 or n == 12 or n == 14 or n == 15 or n == 16 or n == 18 or n == 19 or n == 20 or n == 21 or n == 22 or n == 23 or n == 24 or n == 25 or n == 26 or n == 27 or n == 28 or n == 29 or n == 30 or n == 31 or n == 32 or n == 33 or n == 34 or n == 35 or n == 36 or n == 37 or n == 38 or n == 39 or n == 40 or n == 41 or n == 42 or n == 43 or n == 44 or n == 45 or n == 46 or n == 47 or n == 48 or n == 49 or n == 50 or n == 51 or n == 52 or  n == 53 or n == 54 or n == 55 or n == 56 or n == 57 or n == 58 or n == 59 or n == 60 or n == 61 or n == 62 or n == 63 or n == 64 or n == 65 or n == 66 or n == 67 or n == 68 or n == 69 or n == 70 or n == 71 or n == 72 or n == 73 or n == 74 or n == 75 or n == 76 or n == 77 or n == 78 or n == 79 or n == 80 or n == 81 or n == 82 or n == 83 or n == 84 or n == 85 or n == 86 or n == 87 or n == 88 or n == 89 or n == 90 or n == 91 or n == 92 or n == 93 or n == 94 or n == 95 or n == 96 or n == 97 or n == 98 or n == 99 or n == 100:
+    print("Yes")
+else:
+    print("No")

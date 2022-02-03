@@ -1,0 +1,1 @@
+input();a=list(map(int,input().split()));print(min([sum([(i-j)**2 for j in a])for i in range(-100,101)]))

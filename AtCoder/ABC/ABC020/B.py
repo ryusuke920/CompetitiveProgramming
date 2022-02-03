@@ -1,0 +1,5 @@
+a,b = map(str,input().split())
+ans = "".join(a)
+ans +="".join(b)
+ans = int(ans)
+print(ans*2)

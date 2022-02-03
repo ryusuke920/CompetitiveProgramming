@@ -1,0 +1,1 @@
+k=int(input());print(sum(k//(i*(j+1))for i in range(1,k+1)for j in range(k//i)))
