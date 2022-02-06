@@ -19,6 +19,17 @@ I have solved as competitive programming.
 
 <hr>
 
+## [AtCoder](AtCoder)
+
+<h2>
+解けた！を世界に届けたい。</h2>
+
+- [AtCoder](https://atcoder.jp/) は、世界最高峰の競技プログラミングサイトです。  
+
+- リアルタイムのオンラインコンテストで競い合うことや、3,000以上の過去問にいつでもチャレンジすることができます。  
+
+<hr>
+
 ## [FUNProCon2020](FUNProCon2020)
 
 学内競技プログラミングコンテスト FUNProCon2020 で出題された問題を置いています。
@@ -28,6 +39,12 @@ I have solved as competitive programming.
 ## [ICPC](ICPC)
 
 [ICPC](https://icpc.iisf.or.jp/) の本番で書いたコードや過去問を解いています。
+
+<hr>
+
+## [JOI](JOI)
+
+[日本情報オリンピック（Japanese Olympiad in Informatics, JOI](https://www.ioi-jp.org/) の過去問を解いています。
 
 <hr>
 
@@ -102,5 +119,11 @@ I have solved as competitive programming.
 **数学的な問題** No.95 ~ No.100  
 
 **これが全部解けたら、自信をもって「水色コーダー相当の実力」があるといってよいです。**
+
+<hr>
+
+## [競プロ典型90問](https://github.com/ryusuke920/kyopro_educational_90_python)
+
+- このリポジトリには置いていませんが、上記リンクをたどっていただければ、専用のリポジトリがあります。
 
 <hr>
