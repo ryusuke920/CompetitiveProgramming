@@ -1,21 +1,10 @@
-x = int(input())
+from functools import lru_cache
 
-mod = 998244353
-ans = 0
-l = len(bin(x)[2:])
+@lru_cache
+def calc(x: int):
+    if x <= 3:
+        return x
+    else:
+        return calc(x // 2) * calc((x + 1) // 2) % 998244353
 
-if x <= 4:
-    exit(print(x))
-
-for i in range(1, l + 2):
-    two = i
-    three = x - 2 * i
-    if three % 3 != 0: continue
-    three //= 3
-    if two < 0 or three < 0: continue
-    num = pow(2, two, mod) * pow(3, three, mod)
-    num %= mod
-    print(i,two,three, num)
-    ans = max(ans, num)
-
-print(ans)
+print(calc(int(input())))

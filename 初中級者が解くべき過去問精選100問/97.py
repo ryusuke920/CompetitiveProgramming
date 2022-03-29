@@ -1,7 +1,7 @@
 from math import gcd
 
 n, m = map(int, input().split())
-a = list(map(int ,input().split()))
+a = list(map(int, input().split()))
 
 num = a[0] // 2
 for i in range(n):

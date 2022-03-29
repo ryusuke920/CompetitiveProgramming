@@ -1,0 +1,1 @@
+print('Lose') if str(int(input()) % 9) in '0246' else print('Win')
