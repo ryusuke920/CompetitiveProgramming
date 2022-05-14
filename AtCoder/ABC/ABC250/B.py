@@ -32,21 +32,8 @@ def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
 
 
 def main() -> None:
-    INF = 10 ** 18
     n, a, b = map(int, input().split())
-    grid = []
-    for i in range(n):
-        for j in range(a):
-            t = []
-            for k in range(n):
-                for l in range(b):
-                    if (i + k) % 2 == 0:
-                        t.append('.')
-                    else:
-                        t.append('#')
-            grid.append(t)        
-    for i in range(a * n):
-        print(*grid[i], sep='')
+    [print(*[['#' if (i + j) % 2 else '.' for j in range(n) for _ in range(b)] for i in range(n) for _ in range(a)][k], sep='') for k in range(a * n)]
 
 if __name__ == '__main__':
     main()

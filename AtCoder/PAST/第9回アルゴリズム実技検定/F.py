@@ -1,31 +1,62 @@
-a, b = map(int, input().split())
-s = [list(input()) for _ in range(3)]
+import sys
+input = sys.stdin.readline
+sys.setrecursionlimit(10 ** 6)
+printd = lambda *x : print(*x, file = sys.stderr)
 
-grid = [[False] * 9 for _ in range(9)]
-grid[a - 1][b - 1] = True
+from math import ceil, floor, sin, cos, tan, acos, asin, atan, radians, factorial, exp, degrees
+from collections import defaultdict, deque, Counter
+from itertools import product, permutations, combinations, combinations_with_replacement
+from heapq import heapify, heappop, heappush
+from bisect import bisect, bisect_left, bisect_right
 
-d = []
-for i in range(3):
-    for j in range(3):
-        if s[i][j] == '#':
-            d.append((-1 + i, -1 + j))
 
-from collections import deque
-q = deque()
-q.append((a - 1, b - 1))
-while q:
-    vy, vx = q.popleft()
+def min_int(a: int, b: int) -> int:
+    "2数の最小値"
+    return a if a <= b else b
+
+
+def min_lit(a: list) -> int:
+    "リストの最小値"
+    global INF
+    cnt = INF
+    for i in range(len(a)):
+        if a[i] < cnt:
+            cnt = a[i]
+
+    return cnt
+
+
+def min_lit(a: list) -> int:
+    "リストの最大値"
+    global INF
+    cnt = -INF
+    for i in range(len(a)):
+        if a[i] > cnt:
+            cnt = a[i]
+
+    return cnt
+
+
+def max_int(a: int, b: int) -> int:
+    "2数の最大値"
+    return a if a >= b else b
+
+
+def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
+    "BFSなどの配列外参照"
+    d = ((1, 0), (-1, 0), (0, 1), (0, -1))
     for dy, dx in d:
-        y = dy + vy
-        x = dx + vx
-        if not (0 <= x < 9 and 0 <= y < 9): continue
-        if grid[y][x]: continue
-        grid[y][x] = True
-        q.append((y, x))
+        y = vy + dy
+        x = vx + dx
+        if not (0 <= x < w and 0 <= y < h):
+            return False
+        else:
+            return True
 
-ans = 0
-for i in range(9):
-    for j in range(9):
-        if grid[i][j]: ans += 1
 
-print(ans)
+def main() -> None:
+    INF = 10 ** 18
+
+
+if __name__ == '__main__':
+    main()

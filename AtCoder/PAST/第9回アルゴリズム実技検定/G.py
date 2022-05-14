@@ -1,34 +1,62 @@
-from collections import deque
+import sys
+input = sys.stdin.readline
+sys.setrecursionlimit(10 ** 6)
+printd = lambda *x : print(*x, file = sys.stderr)
 
-n, Q = map(int, input().split())
-g = [[0] * n for _ in range(n)]
+from math import ceil, floor, sin, cos, tan, acos, asin, atan, radians, factorial, exp, degrees
+from collections import defaultdict, deque, Counter
+from itertools import product, permutations, combinations, combinations_with_replacement
+from heapq import heapify, heappop, heappush
+from bisect import bisect, bisect_left, bisect_right
 
-for i in range(Q):
-    t, u, v = map(int, input().split())
-    u -= 1
-    v -= 1
-    if t == 1:
-        if g[u][v] == 0:
-            g[u][v] = 1
-            g[v][u] = 1
-        elif g[u][v] == 1:
-            g[u][v] = 0
-            g[v][u] = 0
-    elif t == 2:
-        q = deque()
-        q.append(u)
-        bool = [False] * n
-        bool[u] = True
-        while q:
-            p = q.popleft()
-            for i in range(n):
-                if p == i: continue
-                if bool[i]: continue
-                if g[p][i] == 1:
-                    bool[i] = True
-                    q.append(i)
 
-        if bool[v]:
-            print('Yes')
+def min_int(a: int, b: int) -> int:
+    "2数の最小値"
+    return a if a <= b else b
+
+
+def min_lit(a: list) -> int:
+    "リストの最小値"
+    global INF
+    cnt = INF
+    for i in range(len(a)):
+        if a[i] < cnt:
+            cnt = a[i]
+
+    return cnt
+
+
+def min_lit(a: list) -> int:
+    "リストの最大値"
+    global INF
+    cnt = -INF
+    for i in range(len(a)):
+        if a[i] > cnt:
+            cnt = a[i]
+
+    return cnt
+
+
+def max_int(a: int, b: int) -> int:
+    "2数の最大値"
+    return a if a >= b else b
+
+
+def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
+    "BFSなどの配列外参照"
+    d = ((1, 0), (-1, 0), (0, 1), (0, -1))
+    for dy, dx in d:
+        y = vy + dy
+        x = vx + dx
+        if not (0 <= x < w and 0 <= y < h):
+            return False
         else:
-            print('No')
+            return True
+
+
+def main() -> None:
+    INF = 10 ** 18
+
+
+if __name__ == '__main__':
+    main()
