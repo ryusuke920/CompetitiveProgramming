@@ -55,8 +55,67 @@ def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
 
 
 def main() -> None:
-    INF = 10 ** 18
+    n = int(input())
+    s = input()
 
+    if n <= 2:
+        exit(print(0))
+
+    num, arc = [], [0] * 3
+    for i in s:
+        if i == 'A':
+            if arc[2] > 0:
+                num.append(min(arc[0], arc[2]))
+                arc = [1, 0, 0]
+            elif arc[1] > 0:
+                arc = [1, 0, 0]
+            else:
+                arc[0] += 1
+        elif i == 'R':
+            if arc[2] > 0:
+                num.append(min(arc[0], arc[2]))
+                arc = [0] * 3
+            elif arc[0] == 0 or arc[1] > 0:
+                arc = [0] * 3
+            else:
+                arc[1] = 1
+        elif i == 'C':
+            if arc[1] == 1:
+                arc[2] += 1
+            else:
+                arc = [0] * 3
+    
+    if arc[2] >= 1:
+        num.append(min(arc[0], arc[2]))
+
+    if len(num) == 0:
+        exit(print(0))
+
+    num.sort()
+    cnt = 0
+    q = deque()
+    for i in num:
+        if i == 1:
+            cnt += 1
+        else:
+            q.append(i)
+
+    ans = 0
+    while q:
+        v = q.popleft()
+        if cnt >= v - 1:
+            cnt -= v - 2
+            ans += 2 * (v - 1)
+        else:
+            ans += cnt * 2
+            v -= cnt
+            q.appendleft(v)
+            cnt = 0
+            break
+
+    ans += cnt if cnt >= 1 else len(q) * 2
+
+    print(ans)
 
 if __name__ == '__main__':
     main()

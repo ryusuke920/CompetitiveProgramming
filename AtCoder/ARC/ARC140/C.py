@@ -10,53 +10,17 @@ from heapq import heapify, heappop, heappush
 from bisect import bisect, bisect_left, bisect_right
 
 
-def min_int(a: int, b: int) -> int:
-    "2数の最小値"
-    return a if a <= b else b
-
-
-def min_lit(a: list) -> int:
-    "リストの最小値"
-    global INF
-    cnt = INF
-    for i in range(len(a)):
-        if a[i] < cnt:
-            cnt = a[i]
-
-    return cnt
-
-
-def min_lit(a: list) -> int:
-    "リストの最大値"
-    global INF
-    cnt = -INF
-    for i in range(len(a)):
-        if a[i] > cnt:
-            cnt = a[i]
-
-    return cnt
-
-
-def max_int(a: int, b: int) -> int:
-    "2数の最大値"
-    return a if a >= b else b
-
-
-def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
-    "BFSなどの配列外参照"
-    d = ((1, 0), (-1, 0), (0, 1), (0, -1))
-    for dy, dx in d:
-        y = vy + dy
-        x = vx + dx
-        if not (0 <= x < w and 0 <= y < h):
-            return False
-        else:
-            return True
-
-
 def main() -> None:
-    INF = 10 ** 18
+    n, x = map(int, input().split())
+    p = [x]
+    a, b = [], []
+    for i in reversed(range(1, x)):
+        a.append(i)
+    for i in range(x + 1, n + 1):
+        b.append(i)
 
+    ans = p + a + b
+    print(*ans)
 
 if __name__ == '__main__':
     main()

@@ -1,62 +1,34 @@
-import sys
-input = sys.stdin.readline
-sys.setrecursionlimit(10 ** 6)
-printd = lambda *x : print(*x, file = sys.stderr)
+def yakusu(n):
+    ans1 = []
+    ans2 = []
 
-from math import ceil, floor, sin, cos, tan, acos, asin, atan, radians, factorial, exp, degrees
-from collections import defaultdict, deque, Counter
-from itertools import product, permutations, combinations, combinations_with_replacement
-from heapq import heapify, heappop, heappush
-from bisect import bisect, bisect_left, bisect_right
-
-
-def min_int(a: int, b: int) -> int:
-    "2数の最小値"
-    return a if a <= b else b
+    for i in range(1, int(n**0.5)+1):
+        if n % i == 0:
+            ans1.append(i)
+            ans2.append(n//i)
+    return ans2+ans1[::-1]
 
 
-def min_lit(a: list) -> int:
-    "リストの最小値"
-    global INF
-    cnt = INF
-    for i in range(len(a)):
-        if a[i] < cnt:
-            cnt = a[i]
+N, K = map(int, input().split())
+S = list(input())
+for v in yakusu(N):
+    # v はNの約数の一つ、v個に分ける
+    li = []
+    block = N//v
+    if v == 1:
+        print(N)
+        exit()
+    for i in range(v):
+        li.append(S[i*block:(i+1)*block])
 
-    return cnt
+    for i in range(len(li)):
+        cnt = 0
+        for j in range(len(li)):
+            if i != j:
+                for k in range(block):
+                    if li[i][k] != li[j][k]:
+                        cnt += 1
 
-
-def min_lit(a: list) -> int:
-    "リストの最大値"
-    global INF
-    cnt = -INF
-    for i in range(len(a)):
-        if a[i] > cnt:
-            cnt = a[i]
-
-    return cnt
-
-
-def max_int(a: int, b: int) -> int:
-    "2数の最大値"
-    return a if a >= b else b
-
-
-def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
-    "BFSなどの配列外参照"
-    d = ((1, 0), (-1, 0), (0, 1), (0, -1))
-    for dy, dx in d:
-        y = vy + dy
-        x = vx + dx
-        if not (0 <= x < w and 0 <= y < h):
-            return False
-        else:
-            return True
-
-
-def main() -> None:
-    INF = 10 ** 18
-
-
-if __name__ == '__main__':
-    main()
+        if cnt <= K:
+            print(block)
+            exit()

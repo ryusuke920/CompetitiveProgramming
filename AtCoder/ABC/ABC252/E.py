@@ -1,61 +1,31 @@
-import sys
-input = sys.stdin.readline
-sys.setrecursionlimit(10 ** 6)
-printd = lambda *x : print(*x, file = sys.stderr)
+from heapq import heappop, heappush
 
-from math import ceil, floor, sin, cos, tan, acos, asin, atan, radians, factorial, exp, degrees
-from collections import defaultdict, deque, Counter
-from itertools import product, permutations, combinations, combinations_with_replacement
-from heapq import heapify, heappop, heappush
-from bisect import bisect, bisect_left, bisect_right
-
-
-def min_int(a: int, b: int) -> int:
-    "2数の最小値"
-    return a if a <= b else b
-
-
-def min_lit(a: list) -> int:
-    "リストの最小値"
-    global INF
-    cnt = INF
-    for i in range(len(a)):
-        if a[i] < cnt:
-            cnt = a[i]
-
-    return cnt
-
-
-def min_lit(a: list) -> int:
-    "リストの最大値"
-    global INF
-    cnt = -INF
-    for i in range(len(a)):
-        if a[i] > cnt:
-            cnt = a[i]
-
-    return cnt
-
-
-def max_int(a: int, b: int) -> int:
-    "2数の最大値"
-    return a if a >= b else b
-
-
-def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
-    "BFSなどの配列外参照"
-    d = ((1, 0), (-1, 0), (0, 1), (0, -1))
-    for dy, dx in d:
-        y = vy + dy
-        x = vx + dx
-        if not (0 <= x < w and 0 <= y < h):
-            return False
-        else:
-            return True
-
-
-def main() -> None:
+def main():
     INF = 10 ** 18
+
+    n, m = map(int, input().split())
+
+    g = [[] for _ in range(n)]
+    for i in range(m):
+        x, y, cost = map(int,input().split())
+        x -= 1
+        y -= 1
+        g[x].append((i, y, cost))
+        g[y].append((i, x, cost))
+
+    dist = [INF] * n
+    dist[0] = 0
+    q = [(0, 0)]
+    edge = []
+    while q:
+        pre = heappop(q)[1]
+        for num, nxt, cost in g[pre]:
+            if dist[nxt] < dist[pre] + cost: continue
+            dist[nxt] = dist[pre] + cost
+            edge.append(num + 1)
+            heappush(q, (dist[nxt], nxt))
+ 
+    print(*edge)
 
 
 if __name__ == '__main__':

@@ -56,6 +56,7 @@ def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
 
 def main() -> None:
     INF = 10 ** 18
+    print(chr(int(input())))
 
 
 if __name__ == '__main__':

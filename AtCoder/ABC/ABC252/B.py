@@ -56,6 +56,19 @@ def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
 
 def main() -> None:
     INF = 10 ** 18
+    n, k = map(int, input().split())
+    a = list(map(int, input().split()))
+    b = list(map(int, input().split()))
+    ma = max(a)
+    ans = []
+    for i in range(n):
+        if a[i] == ma:
+            ans.append(i + 1)
+        
+    if len( set(ans) & set(b) ) >= 1:
+        print('Yes')
+    else:
+        print('No')
 
 
 if __name__ == '__main__':

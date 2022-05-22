@@ -56,6 +56,31 @@ def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
 
 def main() -> None:
     INF = 10 ** 18
+    n = int(input())
+    s = [list(input()) for _ in range(n)]
+
+    t = INF
+    for key in range(10):
+        ans = []
+        for i in range(n):
+            for j in range(10):
+                if int(s[i][j]) == key:
+                    ans.append(j)
+        
+        #print(key)
+        #print(ans)
+        T = []
+        for i in range(10):
+            ko = ans.count(i)
+            if ko == 0:
+                continue
+            T.append(10 * max(0, ko - 1) + i)
+        t = min(t, max(T))
+        #print(T)
+        #print()
+    
+    print(t)
+
 
 
 if __name__ == '__main__':
