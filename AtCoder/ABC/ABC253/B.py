@@ -57,6 +57,17 @@ def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
 def main() -> None:
     INF = 10 ** 18
 
+    h, w = map(int, input().split())
+    s = [list(input()) for _ in range(h)]
+    ans = []
+    for i in range(h):
+        for j in range(w):
+            if s[i][j] == 'o':
+                ans.append((i, j))
+    
+    print(abs(ans[0][0] - ans[1][0]) + abs(ans[0][1] - ans[1][1]))
+
+
 
 if __name__ == '__main__':
     main()

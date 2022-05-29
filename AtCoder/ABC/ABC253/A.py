@@ -56,6 +56,11 @@ def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
 
 def main() -> None:
     INF = 10 ** 18
+    a, b, c = map(int, input().split())
+    if b == (a + b + c - min(a, b, c) - max(a, b, c)):
+        print('Yes')
+    else:
+        print('No')
 
 
 if __name__ == '__main__':

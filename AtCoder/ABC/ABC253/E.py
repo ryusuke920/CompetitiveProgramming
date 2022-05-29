@@ -1,61 +1,40 @@
 import sys
 input = sys.stdin.readline
 sys.setrecursionlimit(10 ** 6)
-printd = lambda *x : print(*x, file = sys.stderr)
-
-from math import ceil, floor, sin, cos, tan, acos, asin, atan, radians, factorial, exp, degrees
-from collections import defaultdict, deque, Counter
-from itertools import product, permutations, combinations, combinations_with_replacement
-from heapq import heapify, heappop, heappush
-from bisect import bisect, bisect_left, bisect_right
-
-
-def min_int(a: int, b: int) -> int:
-    "2数の最小値"
-    return a if a <= b else b
-
-
-def min_lit(a: list) -> int:
-    "リストの最小値"
-    global INF
-    cnt = INF
-    for i in range(len(a)):
-        if a[i] < cnt:
-            cnt = a[i]
-
-    return cnt
-
-
-def min_lit(a: list) -> int:
-    "リストの最大値"
-    global INF
-    cnt = -INF
-    for i in range(len(a)):
-        if a[i] > cnt:
-            cnt = a[i]
-
-    return cnt
-
-
-def max_int(a: int, b: int) -> int:
-    "2数の最大値"
-    return a if a >= b else b
-
-
-def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
-    "BFSなどの配列外参照"
-    d = ((1, 0), (-1, 0), (0, 1), (0, -1))
-    for dy, dx in d:
-        y = vy + dy
-        x = vx + dx
-        if not (0 <= x < w and 0 <= y < h):
-            return False
-        else:
-            return True
 
 
 def main() -> None:
-    INF = 10 ** 18
+    mod = 998244353
+    n, m, k = map(int, input().split())
+
+    
+    # dp[i][j] := i番目がjであるような通り数
+    # dp[i + 1][j] = (dp[i][j - k] + dp[i][j - k - 1] + ... + dp[i][1])
+    #              + (dp[i][j + k] + dp[i][j + k + 1] + ... + dp[i][m])
+    # <=>
+    # dp[i + 1][j] = accumlate_sum[j - k] + (accumulate_sum[m] - accumulate_sum[j + k - 1])
+
+    dp = [[0] * (m + 1) for _ in range(n + 1)]
+    for i in range(1, m + 1):
+        dp[1][i] = 1
+    
+    for i in range(1, n):
+
+        accumulate_sum = [0] * (m + 1)
+        for j in range(m):
+            accumulate_sum[j + 1] = accumulate_sum[j] + dp[i][j + 1]
+        
+        for j in range(1, m + 1):
+            
+            if j - k >= 0:
+                dp[i + 1][j] += accumulate_sum[j - k]
+            
+            if m > j + k - 1 and j + k - 1 > 0:
+                dp[i + 1][j] += accumulate_sum[m] - accumulate_sum[j + k - 1]
+            
+            dp[i + 1][j] %= mod
+
+    print(sum(dp[n][1 : m + 1]) % mod)
 
 
 if __name__ == '__main__':
