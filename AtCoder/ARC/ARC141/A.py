@@ -1,8 +1,3 @@
-import sys
-input = sys.stdin.readline
-sys.setrecursionlimit(10 ** 6)
-printd = lambda *x : print(*x, file = sys.stderr)
-
 from math import ceil, floor, sin, cos, tan, acos, asin, atan, radians, factorial, exp, degrees
 from collections import defaultdict, deque, Counter
 from itertools import product, permutations, combinations, combinations_with_replacement
@@ -15,7 +10,7 @@ def min_int(a: int, b: int) -> int:
     return a if a <= b else b
 
 
-def min_lit(a: list) -> int:
+def min_list(a: list) -> int:
     "リストの最小値"
     global INF
     cnt = INF
@@ -26,7 +21,7 @@ def min_lit(a: list) -> int:
     return cnt
 
 
-def min_lit(a: list) -> int:
+def min_list(a: list) -> int:
     "リストの最大値"
     global INF
     cnt = -INF
@@ -56,6 +51,22 @@ def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
 
 def main() -> None:
     INF = 10 ** 18
+
+    for _ in range(int(input())):
+        s = input()
+        l = len(s)
+
+        ans = []
+        # 区切る数
+        for i in range(1, l):
+
+            if l % i != 0:
+                continue
+
+           
+            ans.append(int(s[:i] * (l // i)))
+
+        print(max(ans))
 
 
 if __name__ == '__main__':

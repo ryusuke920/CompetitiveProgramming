@@ -59,13 +59,31 @@ def main() -> None:
     mod = 10 ** 9 + 7
     #mod = 998244353
 
-    #n = int(input())
+    n = int(input())
     #s = input()
     #n, m = map(int, input().split())
     #a = list(map(int, input().split()))
     #a = [list(map(int, input().split())) for _ in range(n)]
     #s=[list(input()) for _ in range(h)]
+
+    prev = [1]
+    print(*prev)
     
+    if n == 1:
+        exit()
+
+    prev = [1, 1]
+    print(*prev)
+    for i in range(3, n + 1):
+        ans = [1]
+
+        for j in range(len(prev) - 1):
+            ans.append(prev[j] + prev[j + 1])
+
+        ans.append(1)
+
+        print(*ans)
+        prev = ans
 
 
 if __name__ == '__main__':

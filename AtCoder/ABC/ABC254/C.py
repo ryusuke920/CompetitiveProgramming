@@ -61,11 +61,25 @@ def main() -> None:
 
     #n = int(input())
     #s = input()
-    #n, m = map(int, input().split())
-    #a = list(map(int, input().split()))
+    n, k = map(int, input().split())
+    a = list(map(int, input().split()))
     #a = [list(map(int, input().split())) for _ in range(n)]
     #s=[list(input()) for _ in range(h)]
+
+    b = [[] for _ in range(k)]
+    for i in range(n):
+        b[i % k].append(a[i])
     
+    for i in range(k):
+        b[i].sort()
+
+    ans = []
+    for i in range(n):
+        p = i % k
+        q = i // k
+        ans.append(b[p][q])
+
+    print('Yes') if ans == sorted(a) else print('No')
 
 
 if __name__ == '__main__':

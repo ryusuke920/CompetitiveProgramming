@@ -15,7 +15,7 @@ def min_int(a: int, b: int) -> int:
     return a if a <= b else b
 
 
-def min_lit(a: list) -> int:
+def min_list(a: list) -> int:
     "リストの最小値"
     global INF
     cnt = INF
@@ -26,7 +26,7 @@ def min_lit(a: list) -> int:
     return cnt
 
 
-def min_lit(a: list) -> int:
+def min_list(a: list) -> int:
     "リストの最大値"
     global INF
     cnt = -INF

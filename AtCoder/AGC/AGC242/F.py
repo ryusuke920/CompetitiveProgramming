@@ -1,6 +1,6 @@
 import sys
 input = sys.stdin.readline
-sys.setrecursionlimit(500_000)
+sys.setrecursionlimit(10 ** 6)
 printd = lambda *x : print(*x, file = sys.stderr)
 
 from math import ceil, floor, sin, cos, tan, acos, asin, atan, radians, factorial, exp, degrees
@@ -15,11 +15,6 @@ def min_int(a: int, b: int) -> int:
     return a if a <= b else b
 
 
-def max_int(a: int, b: int) -> int:
-    "2数の最大値"
-    return a if a >= b else b
-
-
 def min_list(a: list) -> int:
     "リストの最小値"
     global INF
@@ -31,7 +26,7 @@ def min_list(a: list) -> int:
     return cnt
 
 
-def max_list(a: list) -> int:
+def min_list(a: list) -> int:
     "リストの最大値"
     global INF
     cnt = -INF
@@ -40,6 +35,11 @@ def max_list(a: list) -> int:
             cnt = a[i]
 
     return cnt
+
+
+def max_int(a: int, b: int) -> int:
+    "2数の最大値"
+    return a if a >= b else b
 
 
 def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
@@ -56,16 +56,6 @@ def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
 
 def main() -> None:
     INF = 10 ** 18
-    mod = 10 ** 9 + 7
-    #mod = 998244353
-
-    #n = int(input())
-    #s = input()
-    #n, m = map(int, input().split())
-    #a = list(map(int, input().split()))
-    #a = [list(map(int, input().split())) for _ in range(n)]
-    #s=[list(input()) for _ in range(h)]
-    
 
 
 if __name__ == '__main__':

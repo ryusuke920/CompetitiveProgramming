@@ -60,11 +60,13 @@ def main() -> None:
     #mod = 998244353
 
     #n = int(input())
-    #s = input()
+    s = input()
     #n, m = map(int, input().split())
     #a = list(map(int, input().split()))
     #a = [list(map(int, input().split())) for _ in range(n)]
     #s=[list(input()) for _ in range(h)]
+
+    print(s[-2:])
     
 
 
