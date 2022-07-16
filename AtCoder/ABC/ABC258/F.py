@@ -61,10 +61,54 @@ def main() -> None:
 
     #n = int(input())
     #s = input()
-    #n, m = map(int, input().split())
-    #a = list(map(int, input().split()))
+    n, q, x = map(int, input().split())
+    w = list(map(int, input().split()))
     #a = [list(map(int, input().split())) for _ in range(n)]
     #s=[list(input()) for _ in range(h)]
+    
+    weight = 0
+    for i in range(n):
+        weight += w[i]
+        if weight >= x:
+            cnt = i + 1
+            break
+    
+    now_l, nxt_l = [], []
+    if weight >= x:
+        now_l.append(cnt)
+        nxt_l.append((i + 1) % n)
+    else:
+        p = x // weight
+        weight *= p
+        cnt *= p
+        for i in range(n):
+            weight += w[i]
+            cnt += 1
+            if weight >= x:
+                break
+        now_l.append(cnt)
+        ind = (i + 1) % n
+        nxt_l.append(ind)
+    
+    for i in range(1, n):
+        weight -= w[i - 1]
+        cnt -= 1
+
+        while True:
+            if weight >= x:
+                break
+            weight += w[ind]
+            cnt += 1
+            ind += 1
+            ind %= n
+        
+        now_l.append(cnt)
+        nxt_l.append(ind)
+    
+    
+
+
+
     
 
 

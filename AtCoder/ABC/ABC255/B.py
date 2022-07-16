@@ -1,15 +1,3 @@
-import sys
-input = sys.stdin.readline
-sys.setrecursionlimit(500_000)
-printd = lambda *x : print(*x, file = sys.stderr)
-
-from math import ceil, floor, sin, cos, tan, acos, asin, atan, radians, factorial, exp, degrees
-from collections import defaultdict, deque, Counter
-from itertools import product, permutations, combinations, combinations_with_replacement
-from heapq import heapify, heappop, heappush
-from bisect import bisect, bisect_left, bisect_right
-
-
 def min_int(a: int, b: int) -> int:
     "2数の最小値"
     return a if a <= b else b
@@ -61,10 +49,47 @@ def main() -> None:
 
     #n = int(input())
     #s = input()
-    #n, m = map(int, input().split())
-    #a = list(map(int, input().split()))
-    #a = [list(map(int, input().split())) for _ in range(n)]
+    n, k = map(int, input().split())
+    a = list(map(int, input().split()))
+    b = set()
+    for i in a:
+        b.add(i - 1)
+    
+    xy = [list(map(int, input().split())) for _ in range(n)]
     #s=[list(input()) for _ in range(h)]
+    dist = [INF] * n
+    for i in a:
+        dist[i - 1] = 0
+
+    for i in range(n): # 明かりを持っている人
+
+        if i not in b:
+            continue
+
+        for j in range(n):
+            if i == j:
+                continue
+
+            xi, yi = xy[i]
+            xj, yj = xy[j]
+            d = (xi - xj) ** 2 + (yi - yj) ** 2
+            
+            dist[j] = min(dist[j], d ** 0.5)
+        #print('afaeff',i, dist)
+
+    ans = 0
+    #print(b)
+    #print(dist)
+    for i in dist:
+        if i == 0:
+            continue
+        ans = max(ans, i)
+    print(ans)
+
+
+
+
+
     
 
 

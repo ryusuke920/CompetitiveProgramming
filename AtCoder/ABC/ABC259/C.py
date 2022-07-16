@@ -1,8 +1,3 @@
-import sys
-input = sys.stdin.readline
-sys.setrecursionlimit(500_000)
-printd = lambda *x : print(*x, file = sys.stderr)
-
 from math import ceil, floor, sin, cos, tan, acos, asin, atan, radians, factorial, exp, degrees
 from collections import defaultdict, deque, Counter
 from itertools import product, permutations, combinations, combinations_with_replacement
@@ -41,6 +36,20 @@ def max_list(a: list) -> int:
 
     return cnt
 
+def RLE(S: str) -> list:
+    tmp, cnt, ans = S[0], 1, []
+    for i in range(1, len(S)):
+        if tmp == S[i]:
+            cnt += 1
+        else:
+            ans.append((tmp, cnt))
+            tmp = S[i]
+            cnt = 1
+
+    ans.append((tmp, cnt))
+
+    return ans
+
 
 def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
     "BFSなどの配列外参照"
@@ -57,15 +66,37 @@ def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
 def main() -> None:
     INF = 10 ** 18
     mod = 10 ** 9 + 7
-    #mod = 998244353
-
-    #n = int(input())
-    #s = input()
-    #n, m = map(int, input().split())
-    #a = list(map(int, input().split()))
-    #a = [list(map(int, input().split())) for _ in range(n)]
-    #s=[list(input()) for _ in range(h)]
+    S = input()
+    T = input()
+    s = RLE(S)
+    t = RLE(T)
+    #print(s)
+    #print(t)
+    if len(s) != len(t):
+        exit(print('No'))
     
+    l = len(s)
+    bool = True
+    for i in range(l):
+        if s[i][0] != t[i][0]:
+            bool = False
+            break
+
+        if s[i][1] == 1 and t[i][1] == 1:
+            continue
+
+        if s[i][1] == 1:
+            bool = False
+            break
+
+        if s[i][1] > t[i][1]:
+            bool = False
+            break
+    
+    if bool:
+        print('Yes')
+    else:
+        print('No')
 
 
 if __name__ == '__main__':

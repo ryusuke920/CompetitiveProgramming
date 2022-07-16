@@ -61,10 +61,18 @@ def main() -> None:
 
     #n = int(input())
     #s = input()
-    #n, m = map(int, input().split())
+    n, m, x, t, d = map(int, input().split())
     #a = list(map(int, input().split()))
     #a = [list(map(int, input().split())) for _ in range(n)]
     #s=[list(input()) for _ in range(h)]
+
+    ans = x * d
+    cnt = t - ans
+    if m <= x:
+        print(cnt + m * d)
+    else:
+        print(t)
+    
     
 
 

@@ -1,72 +1,39 @@
-import sys
-input = sys.stdin.readline
-sys.setrecursionlimit(500_000)
-printd = lambda *x : print(*x, file = sys.stderr)
-
-from math import ceil, floor, sin, cos, tan, acos, asin, atan, radians, factorial, exp, degrees
-from collections import defaultdict, deque, Counter
-from itertools import product, permutations, combinations, combinations_with_replacement
-from heapq import heapify, heappop, heappush
-from bisect import bisect, bisect_left, bisect_right
-
-
-def min_int(a: int, b: int) -> int:
-    "2数の最小値"
-    return a if a <= b else b
-
-
-def max_int(a: int, b: int) -> int:
-    "2数の最大値"
-    return a if a >= b else b
-
-
-def min_list(a: list) -> int:
-    "リストの最小値"
-    global INF
-    cnt = INF
-    for i in range(len(a)):
-        if a[i] < cnt:
-            cnt = a[i]
-
-    return cnt
-
-
-def max_list(a: list) -> int:
-    "リストの最大値"
-    global INF
-    cnt = -INF
-    for i in range(len(a)):
-        if a[i] > cnt:
-            cnt = a[i]
-
-    return cnt
-
-
-def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
-    "BFSなどの配列外参照"
-    d = ((1, 0), (-1, 0), (0, 1), (0, -1))
-    for dy, dx in d:
-        y = vy + dy
-        x = vx + dx
-        if not (0 <= x < w and 0 <= y < h):
-            return False
+n, q, x = list(map(int, input().split()))
+w = list(map(int, input().split())) * 2
+a = sum(w) // 2
+c = x // a * n
+x %= a
+b = [c for _ in range(n)]
+l = -1
+r = -1
+a = w[-1]
+c = [0 for _ in range(n)]
+for i in range(n):
+    a -= w[l]
+    l += 1
+    while a < x:
+        r += 1
+        a += w[r]
+    b[i] += r - l + 1
+    c[i] = (r + 1) % n
+a = {0}
+d = 0
+e = [0]
+while c[d] not in a:
+    d = c[d]
+    a.add(d)
+    e.append(d)
+a = e.index(c[d])
+d = len(e) - a
+for i in range(q):
+    k = int(input())
+    if k > a:
+        k -= a
+        if k % d == 0:
+            k = d - 1
         else:
-            return True
-
-
-def main() -> None:
-    INF = 10 ** 18
-    mod = 10 ** 9 + 7
-    #mod = 998244353
-
-    #n = int(input())
-    #s = input()
-    #n, m = map(int, input().split())
-    #a = list(map(int, input().split()))
-    #a = [list(map(int, input().split())) for _ in range(n)]
-    #s=[list(input()) for _ in range(h)]
-    
-
-
-if __name__ == '__main__':
-    main()
+            k %= d
+            k -= 1
+        print(b[e[a + k]])
+    else:
+        print(b[e[k - 1]])

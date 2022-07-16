@@ -65,6 +65,7 @@ def main() -> None:
     #a = list(map(int, input().split()))
     #a = [list(map(int, input().split())) for _ in range(n)]
     #s=[list(input()) for _ in range(h)]
+    print(2 ** int(input()))
     
 
 

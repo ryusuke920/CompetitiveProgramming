@@ -61,10 +61,11 @@ def main() -> None:
 
     #n = int(input())
     #s = input()
-    #n, m = map(int, input().split())
+    n, m = map(int, input().split())
     #a = list(map(int, input().split()))
-    #a = [list(map(int, input().split())) for _ in range(n)]
+    a = [list(map(int, input().split())) for _ in range(n)]
     #s=[list(input()) for _ in range(h)]
+    print(a[n - 1][m - 1])
     
 
 

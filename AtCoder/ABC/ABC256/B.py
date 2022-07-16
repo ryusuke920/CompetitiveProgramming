@@ -55,16 +55,25 @@ def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
 
 
 def main() -> None:
-    INF = 10 ** 18
-    mod = 10 ** 9 + 7
-    #mod = 998244353
 
-    #n = int(input())
-    #s = input()
-    #n, m = map(int, input().split())
-    #a = list(map(int, input().split()))
-    #a = [list(map(int, input().split())) for _ in range(n)]
-    #s=[list(input()) for _ in range(h)]
+    n = int(input())
+    a = list(map(int, input().split()))
+
+    p = 0
+    grid = [0] * 4
+    for i in range(n):
+        grid[0] += 1
+        for j in reversed(range(4)):
+            if j + a[i] >= 4:
+                p += grid[j]
+                grid[j] = 0
+            else:
+                grid[j + a[i]] += grid[j]
+                grid[j] = 0
+        #print(i, grid, p)
+
+    print(p)
+
     
 
 

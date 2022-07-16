@@ -1,62 +1,50 @@
-import sys
-input = sys.stdin.readline
-sys.setrecursionlimit(10 ** 6)
-printd = lambda *x : print(*x, file = sys.stderr)
-
-from math import ceil, floor, sin, cos, tan, acos, asin, atan, radians, factorial, exp, degrees
-from collections import defaultdict, deque, Counter
-from itertools import product, permutations, combinations, combinations_with_replacement
-from heapq import heapify, heappop, heappush
-from bisect import bisect, bisect_left, bisect_right
+class UnionFind:
+    def __init__(self, n):
+        self.n = n
+        self.p = [-1] * n
 
 
-def min_int(a: int, b: int) -> int:
-    "2数の最小値"
-    return a if a <= b else b
+    def leader(self, a):
+        while self.p[a] >= 0:
+            a = self.p[a]
+        return a
 
 
-def min_lit(a: list) -> int:
-    "リストの最小値"
-    global INF
-    cnt = INF
-    for i in range(len(a)):
-        if a[i] < cnt:
-            cnt = a[i]
+    def merge(self, a, b):
+        x = self.leader(a)
+        y = self.leader(b)
 
-    return cnt
+        if x == y:
+            return x
 
+        if self.p[x] > self.p[y]:
+            x, y = y, x
 
-def min_lit(a: list) -> int:
-    "リストの最大値"
-    global INF
-    cnt = -INF
-    for i in range(len(a)):
-        if a[i] > cnt:
-            cnt = a[i]
+        self.p[x] += self.p[y]
+        self.p[y] = x
 
-    return cnt
+        return x
 
+    def same(self, a, b):
+        return self.leader(a) == self.leader(b)
 
-def max_int(a: int, b: int) -> int:
-    "2数の最大値"
-    return a if a >= b else b
+    def size(self, a):
+        return -self.p[self.leader(a)]
 
+n, q = map(int,input().split())
 
-def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
-    "BFSなどの配列外参照"
-    d = ((1, 0), (-1, 0), (0, 1), (0, -1))
-    for dy, dx in d:
-        y = vy + dy
-        x = vx + dx
-        if not (0 <= x < w and 0 <= y < h):
-            return False
-        else:
-            return True
+uf = UnionFind(n)
 
+for _ in range(q):
+    query = list(map(int, input().split()))
+    if query[0] == 1:
+        uf.merge(query[1] - 1, query[2] - 1)
+    elif query[0] == 2:
+        ans = []
+        for i in uf.
+    
+ans = 0
+for i in range(n):
+    ans = max(ans, uf.size(i))
 
-def main() -> None:
-    INF = 10 ** 18
-
-
-if __name__ == '__main__':
-    main()
+print(ans)

@@ -55,18 +55,45 @@ def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
 
 
 def main() -> None:
-    INF = 10 ** 18
-    mod = 10 ** 9 + 7
-    #mod = 998244353
-
-    #n = int(input())
-    #s = input()
-    #n, m = map(int, input().split())
-    #a = list(map(int, input().split()))
-    #a = [list(map(int, input().split())) for _ in range(n)]
-    #s=[list(input()) for _ in range(h)]
+    n = int(input())
+    if n == 1:
+        exit(print(1))
     
-
+    d = defaultdict(int)
+    check = defaultdict(int) # 複数あるか
+    m = []
+    l = []
+    for i in range(n):
+        m.append(int(input()))
+        ll = []
+        for _ in range(m[i]):
+            p, e = map(int, input().split())
+            ll.append((p, e))
+            if d[p] == e:
+                check[p] = 1
+            elif d[p] < e:
+                d[p] = e
+                check[p] = 0
+        l.append(ll)
+    
+    #print(*l, sep='\n')
+    
+    ans, num = 0, True
+    for i in range(n):
+        cnt = True
+        for j in range(m[i]):
+            p, e = l[i][j]
+            if d[p] == e and check[p] == 0:
+                ans += 1
+                cnt = False
+                break
+        
+        if cnt:
+            if num:
+                ans += 1
+            num = False
+    
+    print(ans)
 
 if __name__ == '__main__':
     main()

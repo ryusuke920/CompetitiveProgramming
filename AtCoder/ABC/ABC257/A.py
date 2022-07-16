@@ -61,10 +61,15 @@ def main() -> None:
 
     #n = int(input())
     #s = input()
-    #n, m = map(int, input().split())
+    n, x = map(int, input().split())
     #a = list(map(int, input().split()))
     #a = [list(map(int, input().split())) for _ in range(n)]
     #s=[list(input()) for _ in range(h)]
+    alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    ans = ''
+    for i in alpha:
+        ans += i * n
+    print(ans[x - 1])
     
 
 

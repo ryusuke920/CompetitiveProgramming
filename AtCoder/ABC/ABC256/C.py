@@ -1,71 +1,41 @@
-import sys
-input = sys.stdin.readline
-sys.setrecursionlimit(500_000)
-printd = lambda *x : print(*x, file = sys.stderr)
-
-from math import ceil, floor, sin, cos, tan, acos, asin, atan, radians, factorial, exp, degrees
-from collections import defaultdict, deque, Counter
-from itertools import product, permutations, combinations, combinations_with_replacement
-from heapq import heapify, heappop, heappush
-from bisect import bisect, bisect_left, bisect_right
-
-
-def min_int(a: int, b: int) -> int:
-    "2数の最小値"
-    return a if a <= b else b
-
-
-def max_int(a: int, b: int) -> int:
-    "2数の最大値"
-    return a if a >= b else b
-
-
-def min_list(a: list) -> int:
-    "リストの最小値"
-    global INF
-    cnt = INF
-    for i in range(len(a)):
-        if a[i] < cnt:
-            cnt = a[i]
-
-    return cnt
-
-
-def max_list(a: list) -> int:
-    "リストの最大値"
-    global INF
-    cnt = -INF
-    for i in range(len(a)):
-        if a[i] > cnt:
-            cnt = a[i]
-
-    return cnt
-
-
-def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
-    "BFSなどの配列外参照"
-    d = ((1, 0), (-1, 0), (0, 1), (0, -1))
-    for dy, dx in d:
-        y = vy + dy
-        x = vx + dx
-        if not (0 <= x < w and 0 <= y < h):
-            return False
-        else:
-            return True
-
-
 def main() -> None:
-    INF = 10 ** 18
-    mod = 10 ** 9 + 7
-    #mod = 998244353
 
-    #n = int(input())
-    #s = input()
-    #n, m = map(int, input().split())
-    #a = list(map(int, input().split()))
-    #a = [list(map(int, input().split())) for _ in range(n)]
-    #s=[list(input()) for _ in range(h)]
-    
+    h1, h2, h3, w1, w2, w3 = map(int, input().split())
+
+    ans = 0
+    for a11 in range(1, 31):
+        for a12 in range(1, 31):
+            for a21 in range(1, 31):
+                for a22 in range(1, 31):
+                    a13 = w1 - a11 - a12
+                    a23 = w2 - a21 - a22
+                    a31 = h1 - a11 - a21
+                    a32 = h2 - a12 - a22
+                    a33 = h3 - a13 - a23
+                    
+                    cnt = [a11, a12, a13, a21, a22, a23, a31, a32, a33]
+                    check = True
+
+                    for i in cnt:
+                        if not (1 <= i <= 30):
+                            check = False
+                            break
+
+                    if check:
+                        if a11 + a12 + a13 != w1:
+                            continue
+                        if a21 + a22 + a23 != w2:
+                            continue
+                        if a31 + a32 + a33 != w3:
+                            continue
+                        if a11 + a21 + a31 != h1:
+                            continue
+                        if a12 + a22 + a32 != h2:
+                            continue
+                        if a13 + a23 + a33 != h3:
+                            continue
+                        ans += 1
+    print(ans)
 
 
 if __name__ == '__main__':

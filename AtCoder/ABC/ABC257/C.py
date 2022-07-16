@@ -59,12 +59,42 @@ def main() -> None:
     mod = 10 ** 9 + 7
     #mod = 998244353
 
-    #n = int(input())
-    #s = input()
+    n = int(input())
+    s = input()
     #n, m = map(int, input().split())
-    #a = list(map(int, input().split()))
+    w = list(map(int, input().split()))
+    if '1' not in s or '0' not in s:
+        exit(print(n))
     #a = [list(map(int, input().split())) for _ in range(n)]
     #s=[list(input()) for _ in range(h)]
+    a, b = [], []
+    for i in range(n):
+        if s[i] == '1':
+            b.append(w[i])
+        else:
+            a.append(w[i])
+    
+    a.sort()
+    b.sort()
+    la = len(a)
+    lb = len(b)
+ #   print('ko',a)
+#    print('otona',b)
+    ans = []
+    for i in range(la):
+        x = bisect_left(b, a[i])
+        adult = lb - x
+        child = bisect_left(a, a[i])
+        ans.append(adult + child)
+
+    for i in range(lb):
+        x = bisect_left(a, b[i])
+        adult = lb - i
+        child = x
+        ans.append(adult + child)
+
+    #print(ans)
+    print(max(ans))
     
 
 

@@ -59,12 +59,21 @@ def main() -> None:
     mod = 10 ** 9 + 7
     #mod = 998244353
 
-    #n = int(input())
+    k = int(input())
     #s = input()
     #n, m = map(int, input().split())
     #a = list(map(int, input().split()))
     #a = [list(map(int, input().split())) for _ in range(n)]
     #s=[list(input()) for _ in range(h)]
+
+    m = 21 + k // 60
+    p = k % 60
+    if p < 10:
+        d = '0' + str(p)
+    else:
+        d = str(p)
+    
+    print(str(m) + ':' + d)
     
 
 

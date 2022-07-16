@@ -1,72 +1,76 @@
 import sys
 input = sys.stdin.readline
-sys.setrecursionlimit(500_000)
-printd = lambda *x : print(*x, file = sys.stderr)
 
-from math import ceil, floor, sin, cos, tan, acos, asin, atan, radians, factorial, exp, degrees
-from collections import defaultdict, deque, Counter
-from itertools import product, permutations, combinations, combinations_with_replacement
-from heapq import heapify, heappop, heappush
-from bisect import bisect, bisect_left, bisect_right
+class UnionFind:
+    def __init__(self, n):
+        self.n = n
+        self.p = [-1] * n
 
 
-def min_int(a: int, b: int) -> int:
-    "2数の最小値"
-    return a if a <= b else b
+    def leader(self, a):
+        while self.p[a] >= 0:
+            a = self.p[a]
+        return a
 
 
-def max_int(a: int, b: int) -> int:
-    "2数の最大値"
-    return a if a >= b else b
+    def merge(self, a, b):
+        x = self.leader(a)
+        y = self.leader(b)
 
+        if x == y:
+            return x
 
-def min_list(a: list) -> int:
-    "リストの最小値"
-    global INF
-    cnt = INF
-    for i in range(len(a)):
-        if a[i] < cnt:
-            cnt = a[i]
+        if self.p[x] > self.p[y]:
+            x, y = y, x
 
-    return cnt
+        self.p[x] += self.p[y]
+        self.p[y] = x
 
+        return x
 
-def max_list(a: list) -> int:
-    "リストの最大値"
-    global INF
-    cnt = -INF
-    for i in range(len(a)):
-        if a[i] > cnt:
-            cnt = a[i]
+    def same(self, a, b):
+        return self.leader(a) == self.leader(b)
 
-    return cnt
+    def size(self, a):
+        return -self.p[self.leader(a)]
 
+n = int(input())
+uf = UnionFind(n)
+sx, sy, tx, ty=  map(int, input().split())
+l = [list(map(int, input().split())) for _ in range(n)]
 
-def OutOfRange(h: int, w: int, vy: int, vx: int) -> bool:
-    "BFSなどの配列外参照"
-    d = ((1, 0), (-1, 0), (0, 1), (0, -1))
-    for dy, dx in d:
-        y = vy + dy
-        x = vx + dx
-        if not (0 <= x < w and 0 <= y < h):
-            return False
-        else:
-            return True
+for i in range(n):
+    for j in range(n):
+        if i == j:
+            continue
+        r1 = l[i][2]
+        r2 = l[j][2]
 
+        if r1 < r2:
+            r1, r2 = r2, r1
+        xi, yi, xj, yj = l[i][0], l[i][1], l[j][0], l[j][1]
+        d = (xi - xj) ** 2 + (yi - yj) ** 2
 
-def main() -> None:
-    INF = 10 ** 18
-    mod = 10 ** 9 + 7
-    #mod = 998244353
+        if (r1 - r2) ** 2 <= d and d <= (r1 + r2) ** 2:
+            uf.merge(i, j)
 
-    #n = int(input())
-    #s = input()
-    #n, m = map(int, input().split())
-    #a = list(map(int, input().split()))
-    #a = [list(map(int, input().split())) for _ in range(n)]
-    #s=[list(input()) for _ in range(h)]
+start = []
+goal = []
+for i in range(n):
+    x, y, r = l[i]
+    if (x - sx) ** 2 + (y - sy) ** 2 == r ** 2:
+        start.append(i)
+    if (x - tx) ** 2 + (y - ty) ** 2 == r ** 2:
+        goal.append(i)
     
+bool = False
+for i in start:
+    for j in goal:
+        if uf.same(i, j):
+            bool = True
+            break
 
-
-if __name__ == '__main__':
-    main()
+if bool:
+    print('Yes')
+else:
+    print('No')

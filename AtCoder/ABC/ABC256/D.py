@@ -59,12 +59,36 @@ def main() -> None:
     mod = 10 ** 9 + 7
     #mod = 998244353
 
-    #n = int(input())
+    n = int(input())
     #s = input()
     #n, m = map(int, input().split())
     #a = list(map(int, input().split()))
-    #a = [list(map(int, input().split())) for _ in range(n)]
+    a = [list(map(int, input().split())) for _ in range(n)]
     #s=[list(input()) for _ in range(h)]
+    t = 2 * 10 ** 5 + 2
+    s = [0] * t
+    for i in range(n):
+        x, y = a[i]
+        s[x] += 1
+        s[y] -= 1
+    
+    for i in range(len(s) - 1):
+        s[i + 1] += s[i]
+    
+    check = False
+    for i, j in enumerate(s):
+        if not check:
+            if j != 0:
+                check = True
+                start = i
+        else:
+            if j != 0:
+                continue
+            else:
+                print(start, i)
+                check = False
+    
+
     
 
 
