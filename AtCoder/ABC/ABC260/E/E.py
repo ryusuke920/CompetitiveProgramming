@@ -35,11 +35,25 @@ def main() -> None:
 
     #n = int(input())
     #s = input()
-    #n, m = map(int, input().split())
+    n, m = map(int, input().split())
     #a = list(map(int, input().split()))
     #a = [list(map(int, input().split())) for _ in range(n)]
     #s = [list(input()) for _ in range(h)]
     #grid = [list(input()) for _ in range(h)]
+    ans = [m] * m
+    a = [list(map(int, input().split())) for _ in range(n)]
+    a.sort(key=lambda x: x[0])
+    #print(*a, sep='\n')
+    for i in range(n - 1):
+        xi, yi, xj, yj = a[i][0], a[i][1], a[i + 1][0], a[i + 1][1]
+        for j in range(xj - xi):
+            ans[xi + j - 1] -= (xj - xi - j)
+        
+        for j in range()
+    
+
+
+    print(*ans)
 
 
 if __name__ == '__main__':

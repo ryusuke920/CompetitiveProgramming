@@ -13,11 +13,6 @@ oj d https://atcoder.jp/contests/abc260/tasks/abc260_a A.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
-sys.setrecursionlimit(500_000)
-printd = lambda *x : print(*x, file = sys.stderr)
- 
 from math import sqrt, ceil, floor, sin, cos, tan, acos, asin, atan, radians, factorial, exp, degrees
 from collections import defaultdict, deque, Counter
 from itertools import product, permutations, combinations, combinations_with_replacement
@@ -32,6 +27,20 @@ def main() -> None:
     INF = float('inf')
     mod = 1000000007
     #mod = 998244353
+    s = list(input())
+
+    if len(set(s)) == 1:
+        exit(print(-1))
+
+    if len(set(s)) == 3:
+        exit(print(s[0]))
+
+    if s[0] == s[1]:
+        print(s[2])
+    elif s[0] == s[2]:
+        print(s[1])
+    else:
+        print(s[0])
 
     #n = int(input())
     #s = input()

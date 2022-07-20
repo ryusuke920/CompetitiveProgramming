@@ -34,8 +34,24 @@ def main() -> None:
     #mod = 998244353
 
     #n = int(input())
+
     #s = input()
-    #n, m = map(int, input().split())
+    n, x, y = map(int, input().split())
+    if n == 1:
+        exit(print(0))
+    r, b = [0] * (n + 1), [0] * (n + 1)
+    r[n] = 1
+    for i in reversed(range(2, n + 1)):
+        r[i - 1] += r[i]
+        b[i] += x * r[i]
+        r[i - 1] += b[i]
+        b[i - 1] += b[i] * y
+
+    
+    print(b[1])
+#    print(r)
+#    print(b)
+
     #a = list(map(int, input().split()))
     #a = [list(map(int, input().split())) for _ in range(n)]
     #s = [list(input()) for _ in range(h)]
