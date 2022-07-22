@@ -29,31 +29,30 @@ def ceil(a: int, b: int) -> int:
     return (a + b - 1) // a
 
 def main() -> None:
-    INF = float('inf')
-    mod = 1000000007
-    #mod = 998244353
-
-    #n = int(input())
-    #s = input()
     n, m = map(int, input().split())
-    #a = list(map(int, input().split()))
-    #a = [list(map(int, input().split())) for _ in range(n)]
-    #s = [list(input()) for _ in range(h)]
-    #grid = [list(input()) for _ in range(h)]
-    ans = [m] * m
-    a = [list(map(int, input().split())) for _ in range(n)]
-    a.sort(key=lambda x: x[0])
-    #print(*a, sep='\n')
-    for i in range(n - 1):
-        xi, yi, xj, yj = a[i][0], a[i][1], a[i + 1][0], a[i + 1][1]
-        for j in range(xj - xi):
-            ans[xi + j - 1] -= (xj - xi - j)
-        
-        for j in range()
+
+    p = [[] for _ in range(m + 1)]
     
+    r, min_b = 0, m
+    for _ in range(n):
+        a, b = map(int, input().split())
+        p[a].append(b)
+        r = max(r, a)
+        min_b = min(min_b, b)
 
+    ans = [0] * (m + 2)
+    for l in range(1, min_b + 1):
+        ans[r - l + 1] += 1
+        if m - l + 1 + 1 <= m:
+            ans[m - l + 1 + 1] -= 1
+        if p[l] == []:
+            continue
+        r = max(r, max(p[l]))
+    
+    for i in range(m):
+        ans[i + 1] += ans[i]
 
-    print(*ans)
+    print(*ans[1:m + 1])
 
 
 if __name__ == '__main__':
