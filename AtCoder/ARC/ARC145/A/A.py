@@ -13,11 +13,15 @@ oj s https://atcoder.jp/contests/arc145/tasks/arc145_a A.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
-
 def main() -> None:
-    pass
+    n = int(input())
+    s = list(input())
+    if s == ['B', 'A']:
+        print('No')
+    elif s == s[::-1]:
+        print('Yes')
+    else:
+        print('Yes') if s[0] == 'B' or s[-1] == 'A' else print('No')
 
 if __name__ == "__main__":
     main()

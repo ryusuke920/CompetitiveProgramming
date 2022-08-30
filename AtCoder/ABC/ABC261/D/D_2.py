@@ -23,16 +23,23 @@ def main() -> None:
     for i in range(m):
         c, y = map(int, input().split())
         d[c] = y
-    dp = [0] * (n + 1)
-    for i in range(n):
-        cnt = 0
-        for j in reversed(range(i + 2)):
-            dp[j] = dp[j - 1] + d[j] + x[i]
-            cnt = max(cnt, dp[j - 1])
-        dp[0] = cnt
+    # dp[i][j] := i 番目の操作で j を出した時の最大値
+    # j = 0:ura, j = 1, omote
+    dp = [[-1] * 2 for _ in range(n + 1)]
+    for j in range(2):
+            dp[0][j] = 0
     
-    print(max(dp))
+    num = [-1] * n
 
+    for i in range(n):
+        for j in range(2):
+            if j == 0:
+                dp[i + 1][0] = max(dp[i])
+            elif j == 1:
+                dp[i + 1][1] = max(dp[i][1] + d[])
+        print(*dp, sep='\n')
+        print()
+    print(max(max(dp[n][1]), max(dp[n][0])))
 
 if __name__ == "__main__":
     main()

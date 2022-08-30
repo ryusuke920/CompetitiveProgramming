@@ -1,12 +1,21 @@
+from decimal import Decimal
+
 n = int(input())
-xy = [list(map(int,input().split())) for _ in range(n)]
-xy.sort(key = lambda x: x[0], reverse=True)
-ans = 1
-print(*xy, sep='\n')
-now = xy[0][0]
-for i in range(1, n):
-    if now < xy[i][0]:
+xy = []
+for i in range(n):
+    x, y = map(Decimal, input().split())
+    if x - 1 == 0:
+        xy.append(((y - 1) / x, 10 ** 18))
+    else:
+        xy.append(((y - 1) / x, y / (x - 1)))
+
+xy.sort(key=lambda x: x[1])
+
+ans = 0
+now_r = 0
+for l, r in xy:
+    if now_r <= l:
+        now_r = r
         ans += 1
-    now = xy[i][0]
 
 print(ans)

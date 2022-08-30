@@ -1,23 +1,18 @@
-'''
-oj（online-judge-tools）の使い方について
+n = int(input())
+a = list(map(int, input().split()))
 
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
+mod = 998244353
+modinv = lambda a : pow(a, mod - 2, mod)
 
-oj d https://atcoder.jp/contests/abc263/tasks/abc263_e
-oj t -c "python3 E.py"
-oj s https://atcoder.jp/contests/abc263/tasks/abc263_e E.py --guess-python-interpreter pypy
+dp = [0] * (n + 1)
+for i in range(n - 2, -1, -1):
+    cnt = 1 + (dp[i + 1] - dp[i + a[i] + 1]) * modinv(a[i] + 1)
+    cnt %= mod
+    cnt *= a[i] + 1
+    cnt %= mod
+    cnt *= modinv(a[i])
+    cnt %= mod
+    dp[i] = dp[i + 1] + cnt
+    dp[i] %= mod
 
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
-
-import sys
-input = sys.stdin.readline
-
-def main() -> None:
-    pass
-
-if __name__ == "__main__":
-    main()
+print(cnt)

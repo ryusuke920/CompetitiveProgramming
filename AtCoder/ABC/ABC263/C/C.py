@@ -12,12 +12,15 @@ oj s https://atcoder.jp/contests/abc263/tasks/abc263_c C.py --guess-python-inter
 ※test/ が既に作成されている場合は下記コマンドで test/ を削除する
 rm -rf test/
 '''
+from itertools import permutations
 
-import sys
-input = sys.stdin.readline
-
-def main() -> None:
-    pass
-
-if __name__ == "__main__":
-    main()
+n, m = map(int, input().split())
+for i in permutations(range(m), n):
+    l = [j + 1 for j in i]
+    check = True
+    for j in range(n - 1):
+        if not (l[j] < l[j + 1]):
+            check = False
+            break
+    if check:
+        print(*l)

@@ -5,9 +5,9 @@ oj（online-judge-tools）の使い方について
 2. サンプルが合っているかジャッジする
 3. 提出する
 
-oj d https://atcoder.jp/contests/abc266/tasks/abc266_a
+oj d https://atcoder.jp/contests/abc268/tasks/abc268_a
 oj t -c "python3 A.py"
-oj s https://atcoder.jp/contests/abc266/tasks/abc266_a A.py --guess-python-interpreter pypy
+oj s https://atcoder.jp/contests/abc268/tasks/abc268_a A.py --guess-python-interpreter pypy
 
 ※test/ が既に作成されている場合は下記コマンドで test/ を削除する
 rm -rf test/
@@ -17,7 +17,8 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    s = input()
+    print(s[len(s) // 2 - 1])
 
 if __name__ == "__main__":
     main()

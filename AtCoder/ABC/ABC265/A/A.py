@@ -17,7 +17,15 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    x, y, n = map(int, input().split())
+    ans = []
+    for i in range(10000):
+        if 3 * i > n:
+            continue
+        if y * i + (n - 3 * i) * x > 0:
+            ans.append(y * i + (n - 3 * i) * x)
+    
+    print(min(ans))
 
 if __name__ == "__main__":
     main()

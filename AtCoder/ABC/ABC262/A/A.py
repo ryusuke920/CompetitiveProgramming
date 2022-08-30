@@ -17,7 +17,11 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n = int(input())
+    while True:
+        if n % 4 == 2:
+            exit(print(n))
+        n += 1
 
 if __name__ == "__main__":
     main()

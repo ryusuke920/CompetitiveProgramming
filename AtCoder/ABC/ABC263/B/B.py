@@ -17,7 +17,18 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n = int(input())
+    p = list(map(int, input().split()))
+    for i in range(n - 1):
+        p[i] -= 1
+
+    ans, cnt = 0, n - 1
+    while True:
+        cnt = p[cnt - 1]
+        ans += 1
+        if cnt == 0:
+            break
+    print(ans)
 
 if __name__ == "__main__":
     main()

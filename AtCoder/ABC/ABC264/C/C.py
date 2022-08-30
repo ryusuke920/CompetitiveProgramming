@@ -16,8 +16,32 @@ rm -rf test/
 import sys
 input = sys.stdin.readline
 
+from itertools import product
+
 def main() -> None:
-    pass
+    h, w = map(int, input().split())
+    a = [list(map(int, input().split())) for _ in range(h)]
+    p, q = map(int, input().split())
+    b = [list(map(int, input().split())) for _ in range(p)]
+
+    for i in product([0, 1], repeat=h):
+        for j in product([0, 1], repeat=w):
+            num = []
+
+            for ii in range(h):
+                if i[ii] == 0:
+                    continue
+                num_ = []
+                for jj in range(w):
+                    if i[ii] and j[jj]:
+                        num_.append(a[ii][jj])
+                num.append(num_)
+                
+            if b == num:
+                exit(print('Yes'))
+    
+    print('No')
+
 
 if __name__ == "__main__":
     main()

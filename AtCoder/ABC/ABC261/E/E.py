@@ -17,7 +17,19 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n, c = map(int, input().split())
+    prev = c
+    num = []
+    for i in range(n):
+        t, a = map(int, input().split())
+        if t == 1:
+            c &= a
+        if t == 2:
+            c |= a
+        if t == 3:
+            c ^= a
+        num.append(c)
+    print(num)
 
 if __name__ == "__main__":
     main()

@@ -17,7 +17,22 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n, m, T = map(int, input().split())
+    a = list(map(int, input().split()))
+    t = [list(map(int, input().split())) for _ in range(m)]
+    now = 0
+    ans = T
+    bool = True
+    for i in range(1, n):
+        ans -= a[i - 1]
+        if ans <= 0:
+            bool = False
+        if now < m:
+            if i + 1 == t[now][0]:
+                ans += t[now][1]
+                now += 1
+
+    print('Yes') if bool else print('No')
 
 if __name__ == "__main__":
     main()

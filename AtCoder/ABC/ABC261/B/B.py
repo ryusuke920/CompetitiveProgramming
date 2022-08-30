@@ -17,7 +17,22 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n = int(input())
+    a = [list(input()) for _ in range(n)]
+
+    for i in range(n):
+        for j in range(n):
+            if i == j:
+                if a[i][j] != "-":
+                    exit(print("incorrect"))
+            else:
+                if a[i][j]!="W" and a[j][i] == "L":
+                    exit(print("incorrect"))
+                if a[i][j]!="L" and a[j][i] == "W":
+                    exit(print("incorrect"))
+                if a[i][j]!="D" and a[j][i] == "D":
+                    exit(print("incorrect"))
+    print("correct")
 
 if __name__ == "__main__":
     main()

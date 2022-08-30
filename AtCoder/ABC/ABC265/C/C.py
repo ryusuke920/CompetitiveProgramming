@@ -13,11 +13,44 @@ oj s https://atcoder.jp/contests/abc265/tasks/abc265_c C.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
+def check(y: int, x: int):
+    global h, w
+    if (0 <= x < w and 0 <= y < h):
+        return True
+    else:
+        return False
 
 def main() -> None:
-    pass
+    global h, w
+    h, w = map(int, input().split())
+    grid = [list(input()) for _ in range(h)]
+    num = [[0] * w for _ in range(h)]
+    y, x = 0, 0
+    num[0][0] = 1
+    while True:
+        if grid[y][x] == 'R':
+            x += 1
+            if not check(y, x):
+                exit(print(y + 1, x))
+            num[y][x] += 1
+        if grid[y][x] == 'L':
+            x -= 1
+            if not check(y, x):
+                exit(print(y + 1, x + 2))
+            num[y][x] += 1
+        if grid[y][x] == 'U':
+            y -= 1
+            if not check(y, x):
+                exit(print(y + 2, x + 1))
+            num[y][x] += 1
+        if grid[y][x] == 'D':
+            y += 1
+            if not check(y, x):
+                exit(print(y, x + 1))
+            num[y][x] += 1
+        
+        if num[y][x] >= 2:
+            exit(print(-1))
 
 if __name__ == "__main__":
     main()
