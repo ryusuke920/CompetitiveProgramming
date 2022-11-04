@@ -36,7 +36,13 @@ I have solved as competitive programming.
 
 <hr>
 
-## [ICPC](ICPC)
+## [競技プログラミングの鉄則](ICPC)
+
+[鉄則本](https://atcoder.jp/contests/tessoku-book) で解いた問題を置いています。
+
+<hr>
+
+## [ICPC](InviolableRule)
 
 [ICPC](https://icpc.iisf.or.jp/) の本番で書いたコードや過去問を解いています。
 
