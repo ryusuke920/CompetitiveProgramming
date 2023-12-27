@@ -13,11 +13,16 @@ oj s https://atcoder.jp/contests/abc322/tasks/abc322_a A.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n = int(input())
+    s = input()
+    for i in range(n - 2):
+        if s[i : i + 3] == "ABC":
+            exit(print(i + 1))
+    
+    print(-1)
+
 
 if __name__ == "__main__":
     main()

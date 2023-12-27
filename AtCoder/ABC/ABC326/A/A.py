@@ -17,7 +17,11 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    x, y = map(int, input().split())
+    if x - y == 3 or x - y == 2 or x - y == 1 or x - y == 0 or x - y == -1 or x - y == -2:
+        print("Yes")
+    else:
+        print("No")
 
 if __name__ == "__main__":
     main()

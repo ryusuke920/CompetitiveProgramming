@@ -13,11 +13,25 @@ oj s https://atcoder.jp/contests/abc311/tasks/abc311_b B.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n, d = map(int, input().split())
+    s = [input() for _ in range(n)]
+
+    ans = 0
+    for start in range(d):
+        for end in range(start, d):
+            bool = True
+            for i in range(n):
+                for j in range(start, end + 1):
+                    if s[i][j] == "x":
+                        bool = False
+            
+            if bool:
+                ans = max(ans, end - start + 1)
+    
+    print(ans)
+
 
 if __name__ == "__main__":
     main()

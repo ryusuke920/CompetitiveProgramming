@@ -13,11 +13,21 @@ oj s https://atcoder.jp/contests/abc320/tasks/abc320_b B.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    s = input()
+    l = len(s)
+    ans = 0
+    for i in range(l):
+        for j in range(l):
+            if i > j:
+                continue
+            t = s[i:j + 1]
+            if t == t[::-1]:
+                ans = max(ans, j - i + 1)
+    
+    print(ans)
+
 
 if __name__ == "__main__":
     main()

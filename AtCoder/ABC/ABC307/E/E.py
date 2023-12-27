@@ -17,7 +17,27 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n, m = map(int, input().split())
+    mod = 998244353
+
+    #ans = m * pow(m - 1, n - 2, mod) * (m - 2)
+    #print(ans % mod)
+    dp = [[0] * 2 for _ in range(n)]
+    dp[0][0] = 0
+    dp[0][1] = m
+
+    for i in range(1, n - 1):
+        dp[i][0] = dp[i - 1][0] * (m - 2) + dp[i - 1][1] * (m - 1)
+        dp[i][0] %= mod
+
+        dp[i][1] = dp[i - 1][0]
+        dp[i][1] %= mod
+    
+    ans = dp[n - 2][1] * (m - 1) + dp[n - 2][0] * (m - 2)
+    ans %= mod
+
+    print(ans)
+
 
 if __name__ == "__main__":
     main()

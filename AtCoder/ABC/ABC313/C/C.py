@@ -17,7 +17,20 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n = int(input())
+    a = list(map(int, input().split()))
+    a.sort(reverse=True)
+
+    s = sum(a)
+    check = [s // n for _ in range(n)]
+    for i in range(s % n):
+        check[i] += 1
+    
+    ans = 0
+    for i in range(n):
+        ans += abs(check[i] - a[i])
+    print(ans // 2)
+
 
 if __name__ == "__main__":
     main()

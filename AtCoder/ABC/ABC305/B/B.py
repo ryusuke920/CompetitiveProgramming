@@ -17,7 +17,10 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    p, q = input().split()
+    s = "A__BC___DE____F________G"
+    print(abs(s.index(p) - s.index(q)))
+
 
 if __name__ == "__main__":
     main()

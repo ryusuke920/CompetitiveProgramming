@@ -13,11 +13,31 @@ oj s https://atcoder.jp/contests/abc307/tasks/abc307_d D.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
+from collections import deque
+
 
 def main() -> None:
-    pass
+    n = int(input())
+    s = list(input())
+
+    q1, q2 = [], []
+    len_ = 0
+    for i in range(n):
+        q1.append(s[i])
+        
+        if s[i] == "(":
+            q2.append(i)
+            len_ += 1
+
+        if s[i] == ")":
+            if len_ >= 1:
+                p = q2.pop()
+                len_ -= 1
+                while q1.pop() != "(":
+                    continue
+    
+    print("".join(q1))
+
 
 if __name__ == "__main__":
     main()

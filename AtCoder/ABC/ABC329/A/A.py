@@ -17,7 +17,7 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    print(*input(), sep=" ")
 
 if __name__ == "__main__":
     main()

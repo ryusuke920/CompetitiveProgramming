@@ -17,7 +17,18 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n = int(input())
+    p = list(map(int, input().split()))
+    for i in range(1000):
+        check = True
+        for j in range(1, n):
+            if p[0] + i <= p[j]:
+                check = False
+                break
+        
+        if check:
+            exit(print(i))
+
 
 if __name__ == "__main__":
     main()

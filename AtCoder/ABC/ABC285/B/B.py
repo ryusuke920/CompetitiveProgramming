@@ -13,11 +13,19 @@ oj s https://atcoder.jp/contests/abc285/tasks/abc285_b B.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n = int(input())
+    s = input()
+    for i in range(1, n):
+        for j in range(1, n + 1):
+            if i + j > n:
+                print(j - 1)
+                break
+            if s[j - 1] == s[i + j - 1]:
+                print(j - 1)
+                break
+
 
 if __name__ == "__main__":
     main()

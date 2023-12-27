@@ -17,7 +17,23 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n = int(input())
+    t = 110
+    grid = [[False] * t for _ in range(t)]
+
+    for i in range(n):
+        a, b, c, d = map(int, input().split())
+        for x in range(a, b):
+            for y in range(c, d):
+                grid[x][y] = True
+
+    ans = 0
+    for i in range(t):
+        for j in range(t):
+            ans += grid[i][j]
+    
+    print(ans)
+
 
 if __name__ == "__main__":
     main()

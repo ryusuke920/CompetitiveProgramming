@@ -15,9 +15,27 @@ rm -rf test/
 
 import sys
 input = sys.stdin.readline
+from bisect import bisect_left, bisect_right
 
 def main() -> None:
-    pass
+    n = int(input())
+    a = list(map(int, input().split()))
+    s = [0] * (n + 1)
+    b = [a[i] for i in range(n)]
+    b.sort()
+    for i in range(n):
+        s[i + 1] += s[i] + b[i]
+    # print(s)
+    # print(b)
+    sum_ = sum(a)
+    ans = []
+    for i in range(n):
+        t = bisect_right(b, a[i])
+        #print(t)
+        ans.append(sum_ - s[t])
+    print(*ans)
+
+
 
 if __name__ == "__main__":
     main()

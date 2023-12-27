@@ -17,7 +17,23 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n = int(input())
+    a = list(map(lambda x: int(x) - 1, input().split()))
+    
+    x = []
+    start = 0
+    is_ok = set()
+    while start not in is_ok:
+        is_ok.add(start)
+        start = a[start]
+    cur = a[start]
+    while cur != start:
+        x.append(cur)
+        cur = a[cur]
+    x.append(cur)
+
+    print(len(x))
+    print(*[i + 1 for i in x])
 
 if __name__ == "__main__":
     main()

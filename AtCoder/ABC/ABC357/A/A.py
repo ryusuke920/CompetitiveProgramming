@@ -1,23 +1,10 @@
-'''
-oj（online-judge-tools）の使い方について
-
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
-
-oj d https://atcoder.jp/contests/abc357/tasks/abc357_a
-oj t -c "python3 A.py"
-oj s https://atcoder.jp/contests/abc357/tasks/abc357_a A.py --guess-python-interpreter pypy
-
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
-
-import sys
-input = sys.stdin.readline
-
-def main() -> None:
-    pass
-
-if __name__ == "__main__":
-    main()
+from random import randint
+cnt = 0
+n = 10**5
+for _ in range(n):
+    a = randint(1, 6)
+    b = randint(1, 6)
+    if a + b >= 7 and a == 4:
+        cnt += 1
+print(cnt)
+print(cnt/n*100)

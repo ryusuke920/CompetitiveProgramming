@@ -17,7 +17,13 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    a = list(map(int, input().split()))
+    ans = 0
+    for i in range(64):
+        ans += 2 ** i * a[i]
+    
+    print(ans)
+    
 
 if __name__ == "__main__":
     main()

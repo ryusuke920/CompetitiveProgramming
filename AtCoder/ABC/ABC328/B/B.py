@@ -17,7 +17,22 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n = int(input())
+    d = list(map(int, input().split()))
+    ans = 0
+    for i in range(1, n + 1):
+        for j in range(1, d[i - 1] + 1):
+            s = set()
+            for ii in str(i):
+                s.add(str(ii))
+            for k in str(j):
+                s.add(k)
+            if len(s) == 1:
+                ans += 1
+    
+    print(ans)
+        
+
 
 if __name__ == "__main__":
     main()

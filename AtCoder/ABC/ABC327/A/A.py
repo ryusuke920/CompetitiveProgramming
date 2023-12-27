@@ -1,23 +1,7 @@
-'''
-oj（online-judge-tools）の使い方について
+n = int(input())
+s = input()
+for i in range(n - 1):
+    if (s[i] == "a" and s[i + 1] == "b") or (s[i] == "b" and s[i + 1] == "a"):
+        exit(print("Yes"))
 
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
-
-oj d https://atcoder.jp/contests/abc327/tasks/abc327_a
-oj t -c "python3 A.py"
-oj s https://atcoder.jp/contests/abc327/tasks/abc327_a A.py --guess-python-interpreter pypy
-
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
-
-import sys
-input = sys.stdin.readline
-
-def main() -> None:
-    pass
-
-if __name__ == "__main__":
-    main()
+print("No")

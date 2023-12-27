@@ -13,11 +13,16 @@ oj s https://atcoder.jp/contests/abc322/tasks/abc322_c C.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
+from bisect import bisect_left, bisect_right
 
 def main() -> None:
-    pass
+    n, m = map(int, input().split())
+    a = list(map(int, input().split()))
+
+    for i in range(n):
+        t = bisect_left(a, i + 1)
+        print(a[t] - (i + 1))
+
 
 if __name__ == "__main__":
     main()

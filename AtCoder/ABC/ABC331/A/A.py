@@ -17,7 +17,16 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    a, b = map(int, input().split())
+    y, m, d = map(int, input().split())
+    d += 1
+    if d > b:
+        d -= b
+        m += 1
+    if m > a:
+        m -= a
+        y += 1
+    print(y, m, d)
 
 if __name__ == "__main__":
     main()

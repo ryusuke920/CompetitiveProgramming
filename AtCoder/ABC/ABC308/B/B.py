@@ -16,8 +16,31 @@ rm -rf test/
 import sys
 input = sys.stdin.readline
 
+from collections import defaultdict
+
 def main() -> None:
-    pass
+    n, m = map(int, input().split())
+    c = list(input().split())
+    d = list(input().split())
+    p = list(map(int, input().split()))
+
+    s = set()
+    for i in d:
+        s.add(i)
+    
+    di = defaultdict(int)
+    for i in range(m):
+        di[d[i]] = p[i + 1]
+
+    ans = 0
+    for i in range(n):
+        if c[i] not in s:
+            ans += p[0]
+        else:
+            ans += di[c[i]]
+    
+    print(ans)
+    
 
 if __name__ == "__main__":
     main()

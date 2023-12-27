@@ -1,23 +1,26 @@
-'''
-oj（online-judge-tools）の使い方について
+n = int(input())
+s = [input() for _ in range(n)]
 
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
+h, w = [0] * n, [0] * n
 
-oj d https://atcoder.jp/contests/abc330/tasks/abc330_d
-oj t -c "python3 D.py"
-oj s https://atcoder.jp/contests/abc330/tasks/abc330_d D.py --guess-python-interpreter pypy
+for i in range(n):
+    cnt = 0
+    for j in range(n):
+        if s[i][j] == "o":
+            cnt += 1
+    h[i] = cnt
 
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
+for i in range(n):
+    cnt = 0
+    for j in range(n):
+        if s[j][i] == "o":
+            cnt += 1
+    w[i] = cnt
 
-import sys
-input = sys.stdin.readline
+ans = 0
+for i in range(n):
+    for j in range(n):
+        if s[i][j] == "o":
+            ans += max(0, h[i] - 1) * max(0, w[j] - 1)
 
-def main() -> None:
-    pass
-
-if __name__ == "__main__":
-    main()
+print(ans)

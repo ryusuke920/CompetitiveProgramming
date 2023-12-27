@@ -15,9 +15,39 @@ rm -rf test/
 
 import sys
 input = sys.stdin.readline
+sys.setrecursionlimit(500_000)
 
-def main() -> None:
-    pass
+def dfs(now: int) -> None:
+    for to in g[now]:
+        if s[to] == -1:
+            s[to] = 1 - s[now]
+            dfs(to)
+        elif s[to] == s[now]:
+            exit(print("No"))
+
+def main():
+    global n, m, a, b, g, s
+    n, m = map(int, input().split())
+    a = list(map(int, input().split()))
+    b = list(map(int, input().split()))
+
+    a = [i - 1 for i in a]
+    b = [i - 1 for i in b]
+
+    g = [[] for _ in range(n)]
+    for i in range(m):
+        g[a[i]].append(b[i])
+        g[b[i]].append(a[i])
+
+    s = [-1] * n
+    for i in range(n):
+        if s[i] == -1:
+            s[i] = 0
+            #print(s)
+            dfs(i)
+
+    print("Yes")
+
 
 if __name__ == "__main__":
     main()

@@ -17,7 +17,20 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    d = int(input())
+
+    ans = 10**18
+    for x in range(int(d**0.5) + 1):
+        k = x ** 2 - d
+        # |k + y**2|
+        if k >= 1:
+            ans = min(ans, k)
+        else:
+            y = int((-k)**0.5)
+            for i in range(-10, 10):
+                ans = min(ans, abs(k + (y + i)**2))
+    print(ans)
+
 
 if __name__ == "__main__":
     main()

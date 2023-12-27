@@ -1,23 +1,11 @@
-'''
-oj（online-judge-tools）の使い方について
+s = input()
+q = ["-", "-"]
+for i in s:
+    q.append(i)
+    if "".join(q[-3:]) == "ABC":
+        q.pop()
+        q.pop()
+        q.pop()
 
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
+print(*q[2:], sep="")
 
-oj d https://atcoder.jp/contests/abc328/tasks/abc328_d
-oj t -c "python3 D.py"
-oj s https://atcoder.jp/contests/abc328/tasks/abc328_d D.py --guess-python-interpreter pypy
-
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
-
-import sys
-input = sys.stdin.readline
-
-def main() -> None:
-    pass
-
-if __name__ == "__main__":
-    main()

@@ -17,7 +17,25 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n = int(input())
+    a = list(map(int, input().split()))
+    cnt = [0] * n
+    f = [[0, 0] for _ in range(n)]
+    for i in range(n):
+        f[i][0] = i + 1
+
+    for i in range(3 * n):
+        cnt[a[i] - 1] += 1
+        if cnt[a[i] - 1] == 2:
+            f[a[i] - 1][1] = i + 1
+    
+    f.sort(key=lambda x: x[1])
+    ans = []
+    for i in range(n):
+        ans.append(f[i][0])
+    
+    print(*ans)
+
 
 if __name__ == "__main__":
     main()

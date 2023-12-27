@@ -1,23 +1,26 @@
-'''
-oj（online-judge-tools）の使い方について
+def RLE(S: str) -> list:
+    tmp, cnt, ans = S[0], 1, []
+    for i in range(1, len(S)):
+        if tmp == S[i]:
+            cnt += 1
+        else:
+            ans.append((tmp, cnt))
+            tmp = S[i]
+            cnt = 1
 
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
+    ans.append((tmp, cnt))
 
-oj d https://atcoder.jp/contests/abc329/tasks/abc329_c
-oj t -c "python3 C.py"
-oj s https://atcoder.jp/contests/abc329/tasks/abc329_c C.py --guess-python-interpreter pypy
+    return ans
 
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
+N = int(input())
+S = input()
+ans = 0
+from collections import defaultdict
+d = defaultdict(int)
+for k, v in RLE(S):
+    d[k] = max(d[k], v)
 
-import sys
-input = sys.stdin.readline
+for v in d.values():
+    ans += v
 
-def main() -> None:
-    pass
-
-if __name__ == "__main__":
-    main()
+print(ans)

@@ -13,6 +13,13 @@ oj s https://atcoder.jp/contests/abc318/tasks/abc318_e E.py --guess-python-inter
 rm -rf test/
 '''
 
+'''
+a = b = c
+a = b != c
+a != b = c
+a != b != c
+'''
+
 import sys
 input = sys.stdin.readline
 

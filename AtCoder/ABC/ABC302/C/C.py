@@ -1,23 +1,24 @@
-'''
-oj（online-judge-tools）の使い方について
-
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
-
-oj d https://atcoder.jp/contests/abc302/tasks/abc302_c
-oj t -c "python3 C.py"
-oj s https://atcoder.jp/contests/abc302/tasks/abc302_c C.py --guess-python-interpreter pypy
-
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
-
-import sys
-input = sys.stdin.readline
+from itertools import permutations
 
 def main() -> None:
-    pass
+    n, m = map(int, input().split())
+    s = [input() for _ in range(n)]
+
+    for p in permutations(range(n)):
+        check = True
+        for i in range(n - 1):
+            cnt = 0
+            for j in range(m):
+                if s[p[i]][j] != s[p[i + 1]][j]:
+                    cnt += 1
+            if cnt != 1:
+                check = False
+                break
+        if check:
+            exit(print("Yes"))
+    
+    print("No")
+
 
 if __name__ == "__main__":
     main()

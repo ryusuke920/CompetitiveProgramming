@@ -13,11 +13,20 @@ oj s https://atcoder.jp/contests/abc307/tasks/abc307_b B.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
-
 def main() -> None:
-    pass
+    n = int(input())
+    s = [input() for _ in range(n)]
+
+    for i in range(n):
+        for j in range(n):
+            if i == j:
+                continue
+            p = s[i] + s[j]
+            if p == p[::-1]:
+                exit(print("Yes"))
+    
+    print("No")
+    
 
 if __name__ == "__main__":
     main()

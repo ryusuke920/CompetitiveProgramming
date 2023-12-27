@@ -13,11 +13,20 @@ oj s https://atcoder.jp/contests/abc311/tasks/abc311_a A.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n = int(input())
+    s = input()
+    a = [False, False, False]
+    for i in range(n):
+        if s[i] == "A":
+            a[0] = True
+        if s[i] == "B":
+            a[1] = True
+        if s[i] == "C":
+            a[2] = True
+        if a[0] and a[1] and a[2]:
+            exit(print(i + 1))
 
 if __name__ == "__main__":
     main()

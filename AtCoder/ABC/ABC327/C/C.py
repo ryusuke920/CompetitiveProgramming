@@ -17,7 +17,42 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n = 9
+    a = [list(map(int, input().split())) for _ in range(n)]
+    is_ok = True
+    for i in range(n):
+        num = [0] * n
+        for j in range(n):
+            num[a[i][j] - 1] += 1
+
+        for j in range(n):
+            if num[j] != 1:
+                is_ok = False
+    
+
+    for j in range(n):
+        num = [0] * n
+        for i in range(n):
+            num[a[i][j] - 1] += 1
+
+        for i in range(n):
+            if num[i] != 1:
+                is_ok = False
+
+    # 3*3
+    for i in range(3):
+        for j in range(3):
+            num = [0] * n
+            for y in range(i * 3, i * 3 + 3):
+                for x in range(j * 3, j * 3 + 3):
+                    num[a[y][x] - 1] += 1
+            for k in range(9):
+                if num[k] != 1:
+                    is_ok = False
+
+    
+    print("Yes") if is_ok else print("No")
+
 
 if __name__ == "__main__":
     main()

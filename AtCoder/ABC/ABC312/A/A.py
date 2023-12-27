@@ -13,11 +13,16 @@ oj s https://atcoder.jp/contests/abc312/tasks/abc312_a A.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    s = input()
+    check = ["ACE", "BDF", "CEG", "DFA", "EGB", "FAC", "GBD"]
+    for i in check:
+        if i == s:
+            exit(print("Yes"))
+    
+    print("No")
+
 
 if __name__ == "__main__":
     main()

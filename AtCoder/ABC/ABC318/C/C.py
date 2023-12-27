@@ -17,7 +17,26 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n, d, p = map(int, input().split())
+    f = list(map(int, input().split()))
+    f.sort(reverse=True)
+
+    i = 0
+    cnt = 0
+    while True:
+        if i * d >= n:
+            break
+        normal = sum(f[i * d : min(n, (i + 1) * d)])
+        if normal > p:
+            cnt += 1
+        i += 1
+
+    ans = 0
+    f.sort()
+    for i in range(n - d * cnt):
+        ans += f[i]
+    print(ans + cnt * p)
+
 
 if __name__ == "__main__":
     main()

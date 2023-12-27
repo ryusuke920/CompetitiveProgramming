@@ -16,8 +16,20 @@ rm -rf test/
 import sys
 input = sys.stdin.readline
 
+def judge(p: int) -> bool:
+    l = list(str(p))
+    if int(l[0]) * int(l[1]) == int(l[2]):
+        return True
+    else:
+        return False
+
 def main() -> None:
-    pass
+    n = int(input())
+    while True:
+        if judge(n):
+            exit(print(n))
+        n += 1
+
 
 if __name__ == "__main__":
     main()

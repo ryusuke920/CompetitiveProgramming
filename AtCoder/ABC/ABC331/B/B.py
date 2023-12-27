@@ -17,7 +17,17 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n, s, m, l = map(int, input().split())
+    ans = 10**18
+
+    for x in range(100):
+        for y in range(100):
+            for z in range(100):
+                if x * 6 + y * 8 + z * 12 >= n:
+                    ans = min(ans, s * x + m * y + l * z)
+        
+    print(ans)
+
 
 if __name__ == "__main__":
     main()

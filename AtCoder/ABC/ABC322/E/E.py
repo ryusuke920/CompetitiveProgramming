@@ -1,23 +1,39 @@
-'''
-oj（online-judge-tools）の使い方について
+n, K, p = map(int, input().split())
+c = []
+a = [[0] * 6 for _ in range(n)]
+for i in range(n):
+    s, *t = map(int, input().split())
+    c.append(s)
+    for j in range(len(t)):
+        a[i][j] = t[j]
 
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
+# print(c)
+# print()
+# print(*a, sep="\n")
 
-oj d https://atcoder.jp/contests/abc322/tasks/abc322_e
-oj t -c "python3 E.py"
-oj s https://atcoder.jp/contests/abc322/tasks/abc322_e E.py --guess-python-interpreter pypy
+INF = 10**18
+dp = [[[[[[INF] * 6 for _ in range(6)] for _ in range(6)] for _ in range(6)] for _ in range(6)] for _ in range(101)]
+dp[0][0][0][0][0][0] = 0
+for num in range(n):
+    for i in range(6):
+        for j in range(6):
+            for k in range(6):
+                for l in range(6):
+                    for m in range(6):
+                        dp[num + 1][i][j][k][l][m] = min(dp[num + 1][i][j][k][l][m], dp[num][i][j][k][l][m])
+                        ii = min(p, i + a[num][0])
+                        jj = min(p, j + a[num][1])
+                        kk = min(p, k + a[num][2])
+                        ll = min(p, l + a[num][3])
+                        mm = min(p, m + a[num][4])
+                        # for _ in range(5):
+                        #     t.append(min(p, i + a[num[_]]))
+                        if dp[num][i][j][k][l][m] < INF:
+                            dp[num + 1][ii][jj][kk][ll][mm] = min(dp[num + 1][ii][jj][kk][ll][mm], dp[num][i][j][k][l][m] + c[num])
 
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
+idx = [0] * 6
+for i in range(K):
+    idx[i] = p
 
-import sys
-input = sys.stdin.readline
-
-def main() -> None:
-    pass
-
-if __name__ == "__main__":
-    main()
+ans = dp[n][idx[0]][idx[1]][idx[2]][idx[3]][idx[4]]
+print(-1) if ans == INF else print(ans)

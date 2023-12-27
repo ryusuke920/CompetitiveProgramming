@@ -1,23 +1,25 @@
-'''
-oj（online-judge-tools）の使い方について
+n = int(input())
+p = list(map(int, input().split()))
 
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
+INF = 10**18
+# dp[i][j] := i 番目のコンテストを j 個目で選んだ時のレートの最大値
+dp = [[-INF] * (n + 1) for _ in range(n + 1)]
+for i in range(n):
+    dp[i + 1][1] = p[i]
 
-oj d https://atcoder.jp/contests/abc327/tasks/abc327_f
-oj t -c "python3 F.py"
-oj s https://atcoder.jp/contests/abc327/tasks/abc327_f F.py --guess-python-interpreter pypy
+under = [0] * (n + 1)
+under[1] = 1
+for i in range(2, n + 1):
+    under[i] = under[i - 1] * 0.9 + 1
 
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
+for i in range(2, n + 1):
+    for j in range(1, i + 1):
+        dp[i][j] = max(dp[i][j], dp[i - 1][j])
+        if j - 1 >= 1:
+            dp[i][j] = max(dp[i][j], (dp[i - 1][j - 1] * 0.9 + p[i - 1]))
 
-import sys
-input = sys.stdin.readline
+ans = -INF
+for i in range(1, n + 1):
+    ans = max(ans, dp[n][i] / under[i] - 1200/(i**0.5))
 
-def main() -> None:
-    pass
-
-if __name__ == "__main__":
-    main()
+print(ans)

@@ -1,23 +1,29 @@
-'''
-oj（online-judge-tools）の使い方について
-
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
-
-oj d https://atcoder.jp/contests/abc286/tasks/abc286_d
-oj t -c "python3 D.py"
-oj s https://atcoder.jp/contests/abc286/tasks/abc286_d D.py --guess-python-interpreter pypy
-
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
-
 import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n, x = map(int, input().split())
+    
+    a, b = [0] * n, [0] * n
+    for i in range(n):
+        a[i], b[i] = map(int, input().split())
+    
+    # dp[i][j] := i 番目までの硬貨で j 円を払うことができるか
+    t = min(x, 100 * 50 * 50)
+    dp = [[False] * (t + 10) for _ in range(n + 1)]
+    dp[0][0] = True
+    for i in range(n):
+        for j in range(t + 1):
+            for k in range(b[i] + 1): # 使う枚数
+                if j - k * a[i] >= 0:
+                    dp[i + 1][j] |= dp[i][j - k * a[i]]
+
+
+    if dp[n][x]:
+        print("Yes")
+    else:
+        print("No")
+
 
 if __name__ == "__main__":
     main()

@@ -17,7 +17,14 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    a, b = map(int, input().split())
+    l = [[1, 2], [2, 3], [4, 5], [5, 6], [7, 8], [8, 9]]
+    for i, j in l:
+        if (i, j) == (a, b):
+            exit(print("Yes"))
+    
+    print("No")
+
 
 if __name__ == "__main__":
     main()

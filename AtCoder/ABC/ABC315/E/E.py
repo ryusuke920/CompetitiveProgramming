@@ -1,23 +1,29 @@
-'''
-oj（online-judge-tools）の使い方について
-
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
-
-oj d https://atcoder.jp/contests/abc315/tasks/abc315_e
-oj t -c "python3 E.py"
-oj s https://atcoder.jp/contests/abc315/tasks/abc315_e E.py --guess-python-interpreter pypy
-
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
-
 import sys
 input = sys.stdin.readline
+from collections import deque
 
 def main() -> None:
-    pass
+    n = int(input())
+    g = [[] for _ in range(n)]
+    for i in range(n):
+        c, *p = map(int, input().split())
+        for j in range(c):
+            g[i].append(p[j] - 1)
+    
+
+    q = deque([0])
+    s = set()
+    s.add(0)
+    ans = [1]
+    while q:
+        v = q.popleft()
+        for nxt in g[v]:
+            if nxt not in s:
+                s.add(nxt)
+                q.append(nxt)
+                ans.append(nxt + 1)
+    
+    print(*ans[::-1][:-1])
 
 if __name__ == "__main__":
     main()

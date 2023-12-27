@@ -17,7 +17,20 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    s = list(map(int, input().split()))
+
+    for i in s:
+        if i % 25 == 0 and 100 <= i <= 675:
+            continue
+        else:
+            exit(print("No"))
+
+    for i in range(7):
+        if s[i] > s[i + 1]:
+            exit(print("No"))
+
+    print("Yes")
+
 
 if __name__ == "__main__":
     main()

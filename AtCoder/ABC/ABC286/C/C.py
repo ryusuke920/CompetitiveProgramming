@@ -1,23 +1,17 @@
-'''
-oj（online-judge-tools）の使い方について
-
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
-
-oj d https://atcoder.jp/contests/abc286/tasks/abc286_c
-oj t -c "python3 C.py"
-oj s https://atcoder.jp/contests/abc286/tasks/abc286_c C.py --guess-python-interpreter pypy
-
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
-
-import sys
-input = sys.stdin.readline
-
 def main() -> None:
-    pass
+    n, a, b = map(int, input().split())
+    s = list(input())
+    ans = 10**18
+    for i in range(1, n + 1):
+        s = s[1:] + [s[0]]
+        cost = a * (i % n)
+        for j in range(n // 2):
+            if s[j] != s[-1 - j]:
+                cost += b
+        ans = min(ans, cost)
+
+    print(ans)
+
 
 if __name__ == "__main__":
     main()
