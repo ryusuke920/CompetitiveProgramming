@@ -17,7 +17,19 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n = int(input())
+    a, b = 0, 0
+    for i in range(n):
+        x, y = map(int, input().split())
+        a += x
+        b += y
+    if a == b:
+        print("Draw")
+    elif a > b:
+        print("Takahashi")
+    else:
+        print("Aoki")
+
 
 if __name__ == "__main__":
     main()

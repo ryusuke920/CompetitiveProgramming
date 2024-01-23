@@ -15,9 +15,28 @@ rm -rf test/
 
 import sys
 input = sys.stdin.readline
+sys.setrecursionlimit(500_000)
 
-def main() -> None:
-    pass
+def dfs(now: int, prev :int) -> None:
+    ans.append(now + 1)
+    for nxt in g[now]:
+        if nxt == prev:
+            continue
+        dfs(nxt, now)
 
-if __name__ == "__main__":
-    main()
+
+ans = []
+n = int(input())
+a = list(map(lambda x: int(x) - 1, input().split()))
+
+g = [[] for _ in range(n)]
+for i in range(n):
+    if a[i] >= 0:
+        g[a[i]].append(i)
+        g[i].append(a[i])
+    else:
+        start = i
+
+dfs(start, -1)
+
+print(*ans)
