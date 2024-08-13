@@ -13,11 +13,25 @@ oj s https://atcoder.jp/contests/abc314/tasks/abc314_c C.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    N, M = map(int, input().split())
+    S = input()
+    C = list(map(int, input().split()))
+    g = [[] for _ in range(M)]
+    for i in range(N):
+        g[C[i] - 1].append(S[i])
+    for i in range(M):
+        g[i] = [g[i][-1]] + g[i][:-1]
+    
+    now = [0]*M
+    ans = []
+    for i in range(N):
+        ans.append(g[C[i] - 1][now[C[i] - 1]])
+        now[C[i] - 1] += 1
+
+    print("".join(ans))
+
 
 if __name__ == "__main__":
     main()

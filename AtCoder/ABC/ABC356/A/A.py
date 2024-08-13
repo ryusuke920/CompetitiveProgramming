@@ -17,7 +17,17 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    N, L, R = map(int, input().split())
+    A = []
+    for i in range(1, L):
+        A.append(i)
+    for i in reversed(range(L, R + 1)):
+        A.append(i)
+    for i in range(R + 1, N + 1):
+        A.append(i)
+    
+    print(*A)
+
 
 if __name__ == "__main__":
     main()

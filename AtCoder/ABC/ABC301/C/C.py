@@ -13,11 +13,30 @@ oj s https://atcoder.jp/contests/abc301/tasks/abc301_c C.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
-
 def main() -> None:
-    pass
+    S = input()
+    T = input()
+    card = "@atcoder"
+    s = S.count("@")
+    t = T.count("@")
+    for i in range(26):
+        x = chr(ord("a") + i)
+        p = S.count(x)
+        q = T.count(x)
+        if p != q:
+            if x not in "atcoder":
+                exit(print("No"))
+            else:
+                if p > q:
+                    t -= (p - q)
+                    if t < 0:
+                        exit(print("No"))
+                if p < q:
+                    s -= (q - p)
+                    if s < 0:
+                        exit(print("No"))
+    
+    print("Yes")
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,1 @@
+or j in S[i[j]

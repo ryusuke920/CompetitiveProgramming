@@ -13,11 +13,18 @@ oj s https://atcoder.jp/contests/abc362/tasks/abc362_a A.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    R, G, B = map(int, input().split())
+    C = input()
+
+    if C == "Red":
+        print(min(G, B))
+    if C == "Green":
+        print(min(R, B))
+    if C == "Blue":
+        print(min(R, G))
+
 
 if __name__ == "__main__":
     main()

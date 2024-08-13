@@ -15,9 +15,29 @@ rm -rf test/
 
 import sys
 input = sys.stdin.readline
+from collections import defaultdict
 
-def main() -> None:
-    pass
+def dfs(n):
+    if n == 0:
+        return 0
 
-if __name__ == "__main__":
-    main()
+    if n == 1:
+        return min(X, Y)
+    if d[n] != -INF:
+        return d[n]
+
+    res = INF
+    sum_ = Y * 6 / 5.0
+    for i in range(2, 7):
+        sum_ += dfs(n // i) / 5
+    res = min(res, dfs(n // A) + X, sum_)
+    d[n] = res
+
+    return res
+
+N, A, X, Y = map(float, input().strip().split())
+INF = 10**18
+d = defaultdict(lambda: -INF)
+
+
+print(dfs(N))

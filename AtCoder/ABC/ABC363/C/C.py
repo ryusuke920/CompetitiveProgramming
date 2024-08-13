@@ -1,23 +1,25 @@
-'''
-oj（online-judge-tools）の使い方について
+N, K = map(int, input().split())
+S = list(input())
 
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
+from itertools import permutations
+from collections import deque
+ans = set()
+for i in permutations(range(N)):
+    t = ""
+    for j in range(N):
+        t += S[i[j]]
+    flag = False
+    l = deque()
+    for j in range(K):
+        l.append(t[j])
 
-oj d https://atcoder.jp/contests/abc363/tasks/abc363_c
-oj t -c "python3 C.py"
-oj s https://atcoder.jp/contests/abc363/tasks/abc363_c C.py --guess-python-interpreter pypy
+    if l != l[::-1]:
+        ans.add(t)
+    for i in range(N - K):
+        l.popleft()
+        l.append(t[j + K + 1])
+        if l != l[::-1]:
+            ans.add(t)
 
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
-
-import sys
-input = sys.stdin.readline
-
-def main() -> None:
-    pass
-
-if __name__ == "__main__":
-    main()
+    
+print(len(ans))

@@ -1,23 +1,17 @@
-'''
-oj（online-judge-tools）の使い方について
-
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
-
-oj d https://atcoder.jp/contests/abc347/tasks/abc347_b
-oj t -c "python3 B.py"
-oj s https://atcoder.jp/contests/abc347/tasks/abc347_b B.py --guess-python-interpreter pypy
-
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
-
-import sys
-input = sys.stdin.readline
-
 def main() -> None:
-    pass
+    s = input()
+    len_ = len(s)
+    ans = set()
+    for l in range(len_):
+        for r in range(l, len_):
+            word = []
+            for k in range(l, r + 1):
+                word.append(s[k])
+            ans.add("".join(word))
+    
+    # print(ans)
+
+    print(len(ans))
 
 if __name__ == "__main__":
     main()

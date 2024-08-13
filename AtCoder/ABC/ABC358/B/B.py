@@ -17,7 +17,13 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    N, A = map(int, input().split())
+    T = list(map(int, input().split()))
+    cnt = 0
+    for i in range(N):
+        cnt = max(cnt + A, T[i] + A)
+        print(cnt)
+
 
 if __name__ == "__main__":
     main()

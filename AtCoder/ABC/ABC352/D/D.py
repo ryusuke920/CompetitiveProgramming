@@ -17,7 +17,26 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    N, K = map(int, input().split())
+    P = list(map(int, input().split()))
+    A = []
+    for i in range(N):
+        A.append((P[i], i))
+    A.sort()
+
+    s = set()
+    for i in range(K):
+        s.add(A[i][1])
+    
+    print(s)
+    ans = max(s) - min(s)
+    for i in range(N - K):
+        s.remove(A[i][1])
+        s.add(A[i + K][1])
+        ans = min(ans, max(s) - min(s))
+    
+    print(ans)
+
 
 if __name__ == "__main__":
     main()

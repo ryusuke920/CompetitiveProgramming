@@ -13,11 +13,15 @@ oj s https://atcoder.jp/contests/abc361/tasks/abc361_b B.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
+a, b, c, d, e, f = map(int, input().split())
+g, h, i, j, k, l = map(int, input().split())
 
-def main() -> None:
-    pass
+x_overlap = max(0, min(d, j) - max(a, g))
+y_overlap = max(0, min(e, k) - max(b, h))
+z_overlap = max(0, min(f, l) - max(c, i))
+is_ok = (x_overlap * y_overlap * z_overlap > 0)
 
-if __name__ == "__main__":
-    main()
+if is_ok:
+    print("Yes")
+else:
+    print("No")

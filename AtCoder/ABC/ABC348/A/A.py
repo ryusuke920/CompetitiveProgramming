@@ -17,7 +17,16 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n = int(input())
+    s = []
+    for i in range(n):
+        if i % 3 == 2:
+            s.append("x")
+        else:
+            s.append("o")
+    
+    print("".join(s))
+
 
 if __name__ == "__main__":
     main()

@@ -13,11 +13,12 @@ oj s https://atcoder.jp/contests/abc360/tasks/abc360_a A.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
-
 def main() -> None:
-    pass
+    S = input()
+    if S.index("R") < S.index("M"):
+        print("Yes")
+    else:
+        print("No")
 
 if __name__ == "__main__":
     main()

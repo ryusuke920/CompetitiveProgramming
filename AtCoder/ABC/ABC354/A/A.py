@@ -17,7 +17,15 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    plant = 0
+    H = int(input())
+    i = 0
+    while plant <= H:
+        plant += 2**i
+        i += 1
+    
+    print(i)
+
 
 if __name__ == "__main__":
     main()

@@ -1,23 +1,46 @@
-'''
-oj（online-judge-tools）の使い方について
-
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
-
-oj d https://atcoder.jp/contests/abc341/tasks/abc341_c
-oj t -c "python3 C.py"
-oj s https://atcoder.jp/contests/abc341/tasks/abc341_c C.py --guess-python-interpreter pypy
-
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
-
 import sys
 input = sys.stdin.readline
 
-def main() -> None:
-    pass
+def f(x: int, y: int) -> bool:
+    if s[x][y] == "#":
+        return False
+    
+    for i in range(n):
+        if t[i] == "L":
+            if y == 0:
+                return False
+            if s[x][y - 1] == "#":
+                return False
+            y -= 1
+        if t[i] == "R":
+            if y == w - 1:
+                return False
+            if s[x][y + 1] == "#":
+                return False
+            y += 1
+        if t[i] == "U":
+            if x == 0:
+                return False
+            if s[x - 1][y] == "#":
+                return False
+            x -= 1
+        if t[i] == "D":
+            if x == h - 1:
+                return False
+            if s[x + 1][y] == "#":
+                return False
+            x += 1
+    
+    return True
 
-if __name__ == "__main__":
-    main()
+h, w, n = map(int, input().split())
+t = input()
+s = [input() for _ in range(h)]
+
+ans = 0
+for i in range(h):
+    for j in range(w):
+        if s[i][j] == "." and f(i, j):
+            ans += 1
+    
+print(ans)

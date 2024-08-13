@@ -17,7 +17,14 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    N = int(input())
+    H = list(map(int, input().split()))
+    for i in range(1, N):
+        if H[0] < H[i]:
+            exit(print(i + 1))
+    
+    print(-1)
+
 
 if __name__ == "__main__":
     main()

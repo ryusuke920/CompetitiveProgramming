@@ -16,8 +16,23 @@ rm -rf test/
 import sys
 input = sys.stdin.readline
 
+from collections import deque
+
 def main() -> None:
-    pass
+    n = int(input())
+    a = list(map(int, input().split()))
+
+    q = deque()
+    l = 0
+    for i in range(n):
+        q.append(a[i])
+        l += 1
+        while len(q) > 1 and q[-1] == q[-2]:
+            q.pop()
+            q[-1] += 1
+    
+    print(len(q))
+
 
 if __name__ == "__main__":
     main()

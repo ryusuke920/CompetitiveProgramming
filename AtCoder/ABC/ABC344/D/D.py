@@ -13,11 +13,22 @@ oj s https://atcoder.jp/contests/abc344/tasks/abc344_d D.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
-
 def main() -> None:
-    pass
+    t = input()
+    len_ = len(t)
+    n = int(input())
+    a = []
+    b = []
+    for i in range(n):
+        _, *s = list(input().split())
+        a.append(s)
+        b.append(_)
+    print(*a,sep="\n")
+    INF = 10**18
+    # dp[i][j] := i 番目までの袋で先頭から j 文字を一致させることができる時の最小値
+    dp = [[INF] * (len_ + 1) for _ in range(n + 1)]
+    dp[0][0] = 0
+
 
 if __name__ == "__main__":
     main()

@@ -17,7 +17,19 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    N, T, P = map(int, input().split())
+    L = list(map(int, input().split()))
+    ans = 0
+    while True:
+        cnt = 0
+        for i in range(N):
+            if L[i] >= T:
+                cnt += 1
+        if cnt >= P:
+            exit(print(ans))
+        ans += 1
+        for i in range(N):
+            L[i] += 1
 
 if __name__ == "__main__":
     main()

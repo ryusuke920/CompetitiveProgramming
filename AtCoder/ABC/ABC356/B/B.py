@@ -17,7 +17,20 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    N, M = map(int, input().split())
+    A = list(map(int, input().split()))
+    X = [list(map(int, input().split())) for _ in range(N)]
+    cnt = [0]*M
+    for i in range(N):
+        for j in range(M):
+            cnt[j] += X[i][j]
+    
+    for i in range(M):
+        if not (cnt[i] >= A[i]):
+            exit(print("No"))
+    
+    print("Yes")
+
 
 if __name__ == "__main__":
     main()

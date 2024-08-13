@@ -17,7 +17,24 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    n = int(input())
+    x, y = [0] * n, [0] * n
+    for i in range(n):
+        x[i], y[i] = map(int, input().split())
+
+    for i in range(n):
+        d = 0
+        ans = 0
+        for j in range(n):
+            dy = y[i] - y[j]
+            dx = x[i] - x[j]
+            p = dx**2 + dy**2
+            if p > d:
+                d = p
+                ans = j
+        
+        print(ans + 1)
+
 
 if __name__ == "__main__":
     main()

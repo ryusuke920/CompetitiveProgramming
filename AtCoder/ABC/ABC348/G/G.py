@@ -1,23 +1,55 @@
-'''
-oj（online-judge-tools）の使い方について
+from sys import stdin, setrecursionlimit
 
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
+setrecursionlimit(10**7)
 
-oj d https://atcoder.jp/contests/abc348/tasks/abc348_g
-oj t -c "python3 G.py"
-oj s https://atcoder.jp/contests/abc348/tasks/abc348_g G.py --guess-python-interpreter pypy
+N = int(stdin.readline().strip())
+G = [[] for _ in range(N)]
+C = [0]*N
+dp = [[0]*2 for _ in range(N)]
 
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
+for _ in range(N-1):
+    a, b = map(int, stdin.readline().strip().split())
+    a -= 1
+    b -= 1
+    G[a].append(b)
+    G[b].append(a)
 
-import sys
-input = sys.stdin.readline
+C = list(map(int, stdin.readline().strip().split()))
 
-def main() -> None:
-    pass
+def dfs(now, par):
+    dp[now][0] = C[now]
+    dp[now][1] = 0
+    for to in G[now]:
+        if to == par:
+            continue
+        dfs(to, now)
+        dp[now][0] += dp[to][0]
+        dp[now][1] += dp[to][0] + dp[to][1]
 
-if __name__ == "__main__":
-    main()
+ans = 10**18
+
+def dfs2(now, par, Csum, AnsSum):
+    global ans
+    tmpCsum = Csum
+    CurAns = Csum + AnsSum
+    for to in G[now]:
+        if to == par:
+            continue
+        CurAns += dp[to][0] + dp[to][1]
+    ans = min(ans, CurAns)
+    for to in G[now]:
+        if to == par:
+            continue
+        Csum += dp[to][0]
+        AnsSum += dp[to][0] + dp[to][1]
+    Csum += C[now]
+    for to in G[now]:
+        if to == par:
+            continue
+        nextCsum = Csum - dp[to][0]
+        dfs2(to, now, nextCsum, AnsSum - (dp[to][0] + dp[to][1]) + tmpCsum)
+
+dfs(0, -1)
+ans = dp[0][1]
+dfs2(0, -1, 0, 0)
+print(ans)

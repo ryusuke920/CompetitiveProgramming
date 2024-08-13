@@ -17,7 +17,12 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    N, X, Y, Z = map(int, input().split())
+    if min(X, Y) <= Z <= max(X, Y):
+        print("Yes")
+    else:
+        print("No")
+
 
 if __name__ == "__main__":
     main()

@@ -1,23 +1,18 @@
-'''
-oj（online-judge-tools）の使い方について
+A = [list(map(int, input().split())) for _ in range(3)]
+b = []
+for i in range(3):
+    for j in range(3):
+        b.append(A[i][j])
 
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
+b.sort(reverse=True)
+ta, ao = 0, 0
+for i in range(9):
+    if i % 2 == 0:
+        ta += b[i]
+    else:
+        ao += b[i]
 
-oj d https://atcoder.jp/contests/abc349/tasks/abc349_e
-oj t -c "python3 E.py"
-oj s https://atcoder.jp/contests/abc349/tasks/abc349_e E.py --guess-python-interpreter pypy
-
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
-
-import sys
-input = sys.stdin.readline
-
-def main() -> None:
-    pass
-
-if __name__ == "__main__":
-    main()
+if ta > ao:
+    print("Takahashi")
+else:
+    print("Aoki")

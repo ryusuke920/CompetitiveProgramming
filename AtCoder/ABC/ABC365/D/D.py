@@ -1,23 +1,23 @@
-'''
-oj（online-judge-tools）の使い方について
+def f(a: int, b: int) -> bool:
+    if a == b:
+        return 0
+    if (a == 'R' and b == 'S') or (a == 'S' and b == 'P') or (a == 'P' and b == 'R'):
+        return 1
+    return -1
 
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
 
-oj d https://atcoder.jp/contests/abc365/tasks/abc365_d
-oj t -c "python3 D.py"
-oj s https://atcoder.jp/contests/abc365/tasks/abc365_d D.py --guess-python-interpreter pypy
+N = int(input())
+S = input()
+x = "RPS"
+dp = [[0] * 3 for _ in range(N + 1)]
+for i in range(N):
+    for j in range(3):
+        for k in range(3):
+            # 同じならスルー
+            if x[j] == x[k]:
+                continue
+            if f(x[k], S[i]) == -1:
+                continue
+            dp[i + 1][k] = max(dp[i + 1][k], dp[i][j] + f(x[k], S[i]))
 
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
-
-import sys
-input = sys.stdin.readline
-
-def main() -> None:
-    pass
-
-if __name__ == "__main__":
-    main()
+print(max(dp[N]))

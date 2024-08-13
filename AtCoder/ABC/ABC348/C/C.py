@@ -15,9 +15,23 @@ rm -rf test/
 
 import sys
 input = sys.stdin.readline
+from collections import defaultdict
 
 def main() -> None:
-    pass
+    n = int(input())
+    a, c = [0] * n, [0] * n
+    INF = 10**18
+    d = defaultdict(lambda : INF)
+    for i in range(n):
+        a[i], c[i] = map(int, input().split())
+        d[c[i]] = min(d[c[i]], a[i])
+    
+    ans = []
+    for k, v in d.items():
+        ans.append(v)
+    print(max(ans))
+    print(ans)
+
 
 if __name__ == "__main__":
     main()

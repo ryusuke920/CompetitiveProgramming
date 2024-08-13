@@ -1,23 +1,27 @@
-'''
-oj（online-judge-tools）の使い方について
+from bisect import bisect_left
 
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
+T = int(input())
+for _ in range(T):
+    N = int(input())
+    A = list(map(int, input().split()))
 
-oj d https://atcoder.jp/contests/abc354/tasks/abc354_g
-oj t -c "python3 G.py"
-oj s https://atcoder.jp/contests/abc354/tasks/abc354_g G.py --guess-python-interpreter pypy
+    dp = [float('inf')] * (N + 1)
+    ans = [0] * N
+    dp[0] = -float('inf')
 
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
+    for i in range(N - 1, -1, -1):
+        pos = bisect_left(dp, A[i])
+        if dp[pos - 1] < A[i] and A[i] < dp[pos]:
+            dp[pos] = A[i]
+            ans[i] = 1
 
-import sys
-input = sys.stdin.readline
+    cnt = dp.count(float('inf'))
+    length = len(dp) - cnt - 1
+    for i in range(N):
+        if ans[i] and length > 0:
+            ans[i] = length
+            length -= 1
+        else:
+            ans[i] = 0
 
-def main() -> None:
-    pass
-
-if __name__ == "__main__":
-    main()
+    print(ans.count(0), * [i + 1 for i in range(N) if ans[i] == 0], sep=' ')

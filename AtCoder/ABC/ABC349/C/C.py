@@ -1,23 +1,13 @@
-'''
-oj（online-judge-tools）の使い方について
+s = input()
+t = input()
+p = 0
+for i in s:
+    if i == t[p].lower():
+        p += 1
+    if p == 3:
+        exit(print("Yes"))
 
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
-
-oj d https://atcoder.jp/contests/abc349/tasks/abc349_c
-oj t -c "python3 C.py"
-oj s https://atcoder.jp/contests/abc349/tasks/abc349_c C.py --guess-python-interpreter pypy
-
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
-
-import sys
-input = sys.stdin.readline
-
-def main() -> None:
-    pass
-
-if __name__ == "__main__":
-    main()
+if p == 2 and t[-1] == 'X':
+    print("Yes")
+else:
+    print("No")

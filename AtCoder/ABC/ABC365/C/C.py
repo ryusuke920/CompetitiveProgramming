@@ -1,23 +1,22 @@
-'''
-oj（online-judge-tools）の使い方について
+def binary_search(N, M, A):
+    low, high = 0, max(A) + 1
 
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
+    while low < high:
+        mid = (low + high) // 2
+        total = sum(min(mid, a) for a in A)
+        
+        if total <= M:
+            low = mid + 1
+        else:
+            high = mid
+    
+    if low > max(A):
+        return "infinite"
+    else:
+        return low - 1
 
-oj d https://atcoder.jp/contests/abc365/tasks/abc365_c
-oj t -c "python3 C.py"
-oj s https://atcoder.jp/contests/abc365/tasks/abc365_c C.py --guess-python-interpreter pypy
 
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
+N, M = map(int, input().split())
+A = list(map(int, input().split()))
 
-import sys
-input = sys.stdin.readline
-
-def main() -> None:
-    pass
-
-if __name__ == "__main__":
-    main()
+print(binary_search(N, M, A))

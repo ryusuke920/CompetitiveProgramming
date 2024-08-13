@@ -1,23 +1,29 @@
-'''
-oj（online-judge-tools）の使い方について
-
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
-
-oj d https://atcoder.jp/contests/abc354/tasks/abc354_e
-oj t -c "python3 E.py"
-oj s https://atcoder.jp/contests/abc354/tasks/abc354_e E.py --guess-python-interpreter pypy
-
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
-
 import sys
-input = sys.stdin.readline
 
-def main() -> None:
-    pass
+def dfs(bit, turn):
+    if dp[bit] != -1:
+        return dp[bit]
+    else:
+        for i in range(N):
+            for j in range(i + 1, N):
+                if bit & (1 << i) == 0 and bit & (1 << j) == 0 and (A[i] == A[j] or B[i] == B[j]):
+                    if dfs(bit | (1 << i) | (1 << j), turn ^ 1) == turn:
+                        dp[bit] = turn
+                        return turn
+        dp[bit] = turn ^ 1
+        return dp[bit]
 
-if __name__ == "__main__":
-    main()
+N = int(input())
+A, B = [], []
+for _ in range(N):
+    a, b = map(int, input().split())
+    A.append(a)
+    B.append(b)
+
+dp = [-1 for _ in range(1 << N)]
+ans = dfs(0, 0)
+
+if ans == 0:
+    print("Takahashi")
+else:
+    print("Aoki")

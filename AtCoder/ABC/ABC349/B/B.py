@@ -1,23 +1,21 @@
-'''
-oj（online-judge-tools）の使い方について
-
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
-
-oj d https://atcoder.jp/contests/abc349/tasks/abc349_b
-oj t -c "python3 B.py"
-oj s https://atcoder.jp/contests/abc349/tasks/abc349_b B.py --guess-python-interpreter pypy
-
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
-
-import sys
-input = sys.stdin.readline
+from collections import defaultdict
 
 def main() -> None:
-    pass
+    s = input()
+    d1 = defaultdict(int)
+    d2 = defaultdict(int)
+    for i in s:
+        d1[i] += 1
+    cnt = [0]*1000
+    for k, v in d1.items():
+        cnt[v] += 1
+    
+    for i in range(1000):
+        if cnt[i] != 0 and cnt[i] != 2:
+            exit(print("No"))
+    
+    print("Yes")
+
 
 if __name__ == "__main__":
     main()

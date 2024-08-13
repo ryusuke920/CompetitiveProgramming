@@ -17,7 +17,13 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    ans = []
+    while True:
+        n = int(input())
+        ans.append(n)
+        if n == 0:
+            break
+    print(*ans[::-1], sep="\n")
 
 if __name__ == "__main__":
     main()

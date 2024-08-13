@@ -17,7 +17,13 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    R = int(input())
+    ans = 0
+    for i in range(1000):
+        R += 1
+        ans += 1
+        if R % 100 == 0:
+            exit(print(ans))
 
 if __name__ == "__main__":
     main()

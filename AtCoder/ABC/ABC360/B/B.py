@@ -13,11 +13,24 @@ oj s https://atcoder.jp/contests/abc360/tasks/abc360_b B.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    S, T = input().split()
+    l = len(S)
+    for w in range(1, l):
+        for c in range(w):
+            cnt = []
+            for i in range(l):
+                if i % w == c:
+                    cnt.append(S[i])
+            # print(w, c, cnt)
+            if "".join(cnt) == T:
+                print("Yes")
+                exit()
+    
+    print("No")
+
+
 
 if __name__ == "__main__":
     main()

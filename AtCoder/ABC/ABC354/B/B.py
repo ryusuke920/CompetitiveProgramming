@@ -13,11 +13,19 @@ oj s https://atcoder.jp/contests/abc354/tasks/abc354_b B.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    N = int(input())
+    S = []
+    T = 0
+    for i in range(N):
+        s, c = input().split()
+        c = int(c)
+        S.append(s)
+        T += c
+    S.sort()
+    print(S[T % N])
+
 
 if __name__ == "__main__":
     main()

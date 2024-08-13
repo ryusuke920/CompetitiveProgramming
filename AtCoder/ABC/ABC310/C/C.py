@@ -13,11 +13,17 @@ oj s https://atcoder.jp/contests/abc310/tasks/abc310_c C.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
+from collections import defaultdict
 
 def main() -> None:
-    pass
+    N = int(input())
+    S = [input() for _ in range(N)]
+    s = set()
+    for i in range(N):
+        if S[i] not in s and S[i][::-1] not in s:
+            s.add(S[i])
+    print(len(s))
+
 
 if __name__ == "__main__":
     main()

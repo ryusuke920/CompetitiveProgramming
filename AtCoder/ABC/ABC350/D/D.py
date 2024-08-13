@@ -1,23 +1,50 @@
-'''
-oj（online-judge-tools）の使い方について
+class UnionFind:
+    def __init__(self, n):
+        self.n = n
+        self.p = [-1] * n
 
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
 
-oj d https://atcoder.jp/contests/abc350/tasks/abc350_d
-oj t -c "python3 D.py"
-oj s https://atcoder.jp/contests/abc350/tasks/abc350_d D.py --guess-python-interpreter pypy
+    def leader(self, a):
+        while self.p[a] >= 0:
+            a = self.p[a]
+        return a
 
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
 
-import sys
-input = sys.stdin.readline
+    def merge(self, a, b):
+        x = self.leader(a)
+        y = self.leader(b)
+
+        if x == y:
+            return x
+
+        if self.p[x] > self.p[y]:
+            x, y = y, x
+
+        self.p[x] += self.p[y]
+        self.p[y] = x
+
+        return x
+
+    def same(self, a, b):
+        return self.leader(a) == self.leader(b)
+
+    def size(self, a):
+        return -self.p[self.leader(a)]
+
 
 def main() -> None:
-    pass
+    n, m = map(int, input().split())
+
+    uf = UnionFind(n)
+
+    for _ in range(m):
+        a, b = map(int,input().split())
+        uf.merge(a - 1, b - 1)
+
+    ans = 0
+    for i in range(uf.gro)
+
+    print(ans)
 
 if __name__ == "__main__":
     main()

@@ -17,7 +17,12 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    N, K, X = map(int, input().split())
+    A = list(map(int, input().split()))
+    
+    ans = A[:K] + [X] + A[K:]
+    print(*ans)
+
 
 if __name__ == "__main__":
     main()

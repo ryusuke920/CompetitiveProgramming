@@ -1,23 +1,13 @@
-'''
-oj（online-judge-tools）の使い方について
-
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
-
-oj d https://atcoder.jp/contests/abc355/tasks/abc355_a
-oj t -c "python3 A.py"
-oj s https://atcoder.jp/contests/abc355/tasks/abc355_a A.py --guess-python-interpreter pypy
-
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
-
 import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    A, B = map(int, input().split())
+    if A == B:
+        print(-1)
+    else:
+        print(6 - (A + B))
+
 
 if __name__ == "__main__":
     main()

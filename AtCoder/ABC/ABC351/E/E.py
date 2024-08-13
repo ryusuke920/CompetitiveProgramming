@@ -16,8 +16,39 @@ rm -rf test/
 import sys
 input = sys.stdin.readline
 
-def main() -> None:
-    pass
+def f1(a: list) -> int:
+    a.sort()
+    num = 0
+    sum_ = 0
+    len_ = len(a)
+    for i in range(len_):
+        num += i * a[i] - sum_
+        # num += (i + 1) * a[i] - sum_
+        sum_ += a[i]
+    # print(num)
+    return num
 
-if __name__ == "__main__":
-    main()
+def f2(a: list) -> int:
+    len_ = len(a)
+    for i in range(len_):
+        cnt1, cnt2 = a[i][0], a[i][1]
+        a[i][0] = cnt1 + cnt2
+        a[i][1] = cnt1 - cnt2
+
+    vx = [x for x, y in a]
+    vy = [y for x, y in a]
+
+    return f1(vx) + f1(vy)
+
+
+N = int(input())
+A = [list(map(int, input().split())) for _ in range(N)]
+
+odd, even = [], []
+for i in range(N):
+    if (A[i][0] + A[i][1]) % 2 == 0:
+        even.append(A[i])
+    else:
+        odd.append(A[i])
+
+print((f2(odd) + f2(even)) // 2)

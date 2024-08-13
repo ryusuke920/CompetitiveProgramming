@@ -13,11 +13,20 @@ oj s https://atcoder.jp/contests/abc352/tasks/abc352_b B.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    S = input()
+    T = input()
+    l1 = len(S)
+    l2 = len(T)
+    now = 0
+    ans = []
+    for i in range(l2):
+        if T[i] == S[now]:
+            ans.append(i + 1)
+            now += 1
+
+    print(*ans)
 
 if __name__ == "__main__":
     main()

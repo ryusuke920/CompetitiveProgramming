@@ -17,7 +17,8 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    x = 3
+    print(~x, not x, not 0, not 1)
 
 if __name__ == "__main__":
     main()

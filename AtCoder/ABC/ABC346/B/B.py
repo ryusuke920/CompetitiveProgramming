@@ -13,11 +13,13 @@ oj s https://atcoder.jp/contests/abc346/tasks/abc346_b B.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
-
 def main() -> None:
-    pass
+    w, b = map(int, input().split())
+    s = "wbwbwwbwbwbw"*500
+    l = len(s)
+    for i in range(l):
+        for j in range(i + 1, l):
+            
 
 if __name__ == "__main__":
     main()

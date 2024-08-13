@@ -13,11 +13,28 @@ oj s https://atcoder.jp/contests/abc360/tasks/abc360_d D.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
+from bisect import bisect_left, bisect_right
 
 def main() -> None:
-    pass
+    N, T = map(int, input().split())
+    S = input()
+    X = list(map(int, input().split()))
+
+    a = []
+    for i in range(N):
+        if S[i] == "0":
+            a.append(X[i])
+    a.sort()
+
+    ans = 0
+    for i in range(N):
+        if S[i] == "1":
+            l = bisect_left(a, X[i])
+            r = bisect_right(a, X[i] + 2*T)
+            ans += r - l
+    
+    print(ans)
+
 
 if __name__ == "__main__":
     main()

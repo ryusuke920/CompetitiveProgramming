@@ -17,7 +17,19 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    N, K = map(int, input().split())
+    A = list(map(int, input().split()))
+    ans = 1
+    num = 0
+    for i in range(N):
+        if num + A[i] <= K:
+            num += A[i]
+        else:
+            ans += 1
+            num = A[i]
+    
+    print(ans)
+
 
 if __name__ == "__main__":
     main()
