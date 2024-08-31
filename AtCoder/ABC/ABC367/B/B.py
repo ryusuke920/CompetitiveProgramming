@@ -13,11 +13,14 @@ oj s https://atcoder.jp/contests/abc367/tasks/abc367_b B.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
-
 def main() -> None:
-    pass
+    s, t = input().split(".")
+    t = t.rstrip("0")
+    if len(t) == 0:
+        print(s)
+    else:
+        print(s + "." + t)
+
 
 if __name__ == "__main__":
     main()

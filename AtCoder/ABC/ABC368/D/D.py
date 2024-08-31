@@ -1,23 +1,38 @@
-'''
-oj（online-judge-tools）の使い方について
+from collections import deque, defaultdict
 
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
+N, K = map(int, input().split())
+edges = [tuple(map(int, input().split())) for _ in range(N - 1)]
+V = list(map(int, input().split()))
 
-oj d https://atcoder.jp/contests/abc368/tasks/abc368_d
-oj t -c "python3 D.py"
-oj s https://atcoder.jp/contests/abc368/tasks/abc368_d D.py --guess-python-interpreter pypy
+graph = defaultdict(list)
+for u, v in edges:
+    graph[u].append(v)
+    graph[v].append(u)
 
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
+need = set(V)
 
-import sys
-input = sys.stdin.readline
+l = [0] * (N + 1)
+for u in range(1, N + 1):
+    l[u] = len(graph[u])
 
-def main() -> None:
-    pass
+queue = deque()
+for i in range(1, N + 1):
+    if l[i] == 1 and i not in need:
+        queue.append(i)
 
-if __name__ == "__main__":
-    main()
+out = [False] * (N + 1)
+while queue:
+    node = queue.popleft()
+    out[node] = True
+    for nxt in graph[node]:
+        if not out[nxt]:
+            l[nxt] -= 1
+            if l[nxt] == 1 and nxt not in need:
+                queue.append(nxt)
+
+ans = 0
+for i in range(1, N + 1):
+    if not out[i]:
+        ans += 1
+
+print(ans)

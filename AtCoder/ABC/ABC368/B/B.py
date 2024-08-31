@@ -17,7 +17,22 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    N = int(input())
+    A = list(map(int, input().split()))
+    ans = 0
+    while True:
+        s = 0
+        for i in A:
+            if i >= 1:
+                s += 1
+        if s <= 1:
+            break
+        ans += 1
+        A.sort(reverse=True)
+        A[0] -= 1
+        A[1] -= 1
+        # print(ans, A)
+    print(ans)
 
 if __name__ == "__main__":
     main()

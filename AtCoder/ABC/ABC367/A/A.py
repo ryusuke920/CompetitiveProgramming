@@ -17,7 +17,19 @@ import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    A, B, C = map(int, input().split())
+    check = False
+    if B > C:
+        for i in range(B, C + 25):
+            if i % 24 == A:
+                check = True
+    else:
+        for i in range(B, C + 1):
+            if i % 24 == A:
+                check = True
+    
+    print("Yes") if check else print("No")
+
 
 if __name__ == "__main__":
     main()

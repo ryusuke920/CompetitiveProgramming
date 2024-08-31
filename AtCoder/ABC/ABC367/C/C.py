@@ -14,10 +14,22 @@ rm -rf test/
 '''
 
 import sys
-input = sys.stdin.readline
+sys.setrecursionlimit(500_000)
 
-def main() -> None:
-    pass
+def dfs(i, j, cnt, l):
+    if j == N:
+        if cnt % K == 0:
+            print(" ".join(map(str, l)))
+        return
+    
+    for k in range(1, R[j] + 1):
+        l.append(k)
+        dfs(k, j + 1, cnt + k, l)
+        l.pop()
 
-if __name__ == "__main__":
-    main()
+
+N, K = map(int, input().split())
+R = list(map(int, input().split()))
+dfs(0, 0, 0, [])
+from itertools import permutations
+# for i in permutations(range(N)):
