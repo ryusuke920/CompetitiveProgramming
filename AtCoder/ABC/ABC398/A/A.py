@@ -13,11 +13,14 @@ oj s https://atcoder.jp/contests/abc398/tasks/abc398_a A.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
-
 def main() -> None:
-    pass
+    N = int(input())
+    if N % 2 == 1:
+        print("-"*(N//2)+"="+"-"*(N//2))
+    else:
+        N -= 1
+        print("-"*(N//2)+"=="+"-"*(N//2))
+        
 
 if __name__ == "__main__":
     main()

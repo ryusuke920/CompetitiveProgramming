@@ -16,8 +16,24 @@ rm -rf test/
 import sys
 input = sys.stdin.readline
 
+def check(x: int, y: int) -> bool:
+    if A.count(x) >= 3 and A.count(y) >= 2:
+        return True
+    if A.count(x) >= 2 and A.count(y) >= 3:
+        return True
+    return False
+
 def main() -> None:
-    pass
+    global A
+    A = list(map(int, input().split()))
+    for i in range(1, 14):
+        for j in range(1, 14):
+            if i == j:
+                continue
+            if check(i, j):
+                exit(print("Yes"))
+    print("No")
+
 
 if __name__ == "__main__":
     main()

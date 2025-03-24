@@ -13,11 +13,22 @@ oj s https://atcoder.jp/contests/abc394/tasks/abc394_c C.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
-
 def main() -> None:
-    pass
+    S = list(input())[::-1]
+    N = len(S)
+    ans = []
+    i = 0
+    while i < N:
+        if i == N - 1:
+            ans.append(S[i])
+        else:
+            if S[i] + S[i + 1] == "AW":
+                ans.append("C")
+                S[i + 1] = "A"
+            else:
+                ans.append(S[i])
+        i += 1
+    print("".join(ans)[::-1])
 
 if __name__ == "__main__":
     main()

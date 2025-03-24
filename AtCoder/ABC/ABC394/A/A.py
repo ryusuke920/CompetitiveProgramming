@@ -13,11 +13,14 @@ oj s https://atcoder.jp/contests/abc394/tasks/abc394_a A.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
-
 def main() -> None:
-    pass
+    S = input()
+    ans = ""
+    for i in S:
+        if i == "2":
+            ans += i
+    print(ans)
+    
 
 if __name__ == "__main__":
     main()

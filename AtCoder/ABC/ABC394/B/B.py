@@ -13,11 +13,17 @@ oj s https://atcoder.jp/contests/abc394/tasks/abc394_b B.py --guess-python-inter
 rm -rf test/
 '''
 
-import sys
-input = sys.stdin.readline
-
 def main() -> None:
-    pass
+    N = int(input())
+    a = []
+    for i in range(N):
+        S = input()
+        a.append((S, len(S)))
+    a.sort(key=lambda x: x[1], reverse=False)
+    ans = ""
+    for i in range(N):
+        ans += a[i][0]
+    print(ans)
 
 if __name__ == "__main__":
     main()
