@@ -16,8 +16,25 @@ rm -rf test/
 import sys
 input = sys.stdin.readline
 
+from collections import defaultdict
+
 def main() -> None:
-    pass
+    N, M = map(int, input().split())
+    d = defaultdict(int)
+    ans = 0
+    for _ in range(M):
+        u, v = map(lambda x: int(x) - 1, input().split())
+        if u == v:
+            ans += 1
+        else:
+            u, v = min(u, v), max(u, v)
+            if d[f"{u}-{v}"] != 0:
+                ans += 1
+            else:
+                d[f"{u}-{v}"] += 1
+    
+    print(ans)
+
 
 if __name__ == "__main__":
     main()
