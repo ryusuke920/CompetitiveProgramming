@@ -1,23 +1,57 @@
-'''
-oj（online-judge-tools）の使い方について
+class UnionFind:
+    def __init__(self, n: int) -> None:
+        self.n = n
+        self.p = [-1] * n
 
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
 
-oj d https://atcoder.jp/contests/abc399/tasks/abc399_c
-oj t -c "python3 C.py"
-oj s https://atcoder.jp/contests/abc399/tasks/abc399_c C.py --guess-python-interpreter pypy
+    def leader(self, a: int) -> int:
+        while self.p[a] >= 0:
+            a = self.p[a]
+        return a
 
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
 
-import sys
-input = sys.stdin.readline
+    def merge(self, a: int, b: int) -> int:
+        x = self.leader(a)
+        y = self.leader(b)
+
+        if x == y:
+            return x
+
+        if self.p[x] > self.p[y]:
+            x, y = y, x
+
+        self.p[x] += self.p[y]
+        self.p[y] = x
+
+        return x
+
+    def same(self, a: int, b: int) -> bool:
+        return self.leader(a) == self.leader(b)
+
+    def groups(self) -> list:
+        member = [[] for _ in range(self.n)]
+        for i in range(self.n):
+            member[self.leader(i)].append(i)
+        return member
+
+    def size(self, a: int) -> int:
+        return -self.p[self.leader(a)]
+
 
 def main() -> None:
-    pass
+    N, M = map(int, input().split())
+
+    UF = UnionFind(N)
+    ans = 0
+    for _ in range(M):
+        u, v = map(lambda x: int(x) - 1, input().split())
+        if UF.same(u, v):
+            ans += 1
+        else:
+            UF.merge(u, v)
+    
+    print(ans)
+
 
 if __name__ == "__main__":
     main()
