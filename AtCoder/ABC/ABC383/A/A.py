@@ -1,23 +1,19 @@
-'''
-oj（online-judge-tools）の使い方について
-
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
-
-oj d https://atcoder.jp/contests/abc383/tasks/abc383_a
-oj t -c "python3 A.py"
-oj s https://atcoder.jp/contests/abc383/tasks/abc383_a A.py --guess-python-interpreter pypy
-
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
-
 import sys
 input = sys.stdin.readline
 
 def main() -> None:
-    pass
+    N = int(input())
+    T, V = [0]*N, [0]*N
+    for i in range(N):
+        T[i], V[i] = map(int, input().split())
+    
+    ans = V[0]
+    for i in range(1, N):
+        ans -= T[i] - T[i - 1]
+        ans = max(ans, 0)
+        ans += V[i]
+    print(ans)
+
 
 if __name__ == "__main__":
     main()
