@@ -1,23 +1,21 @@
-'''
-oj（online-judge-tools）の使い方について
+H, W, D = map(int, input().split())
+S = [input() for _ in range(H)]
+ans = 0
 
-1. テストケースをダウンロード
-2. サンプルが合っているかジャッジする
-3. 提出する
-
-oj d https://atcoder.jp/contests/abc383/tasks/abc383_b
-oj t -c "python3 B.py"
-oj s https://atcoder.jp/contests/abc383/tasks/abc383_b B.py --guess-python-interpreter pypy
-
-※test/ が既に作成されている場合は下記コマンドで test/ を削除する
-rm -rf test/
-'''
-
-import sys
-input = sys.stdin.readline
-
-def main() -> None:
-    pass
-
-if __name__ == "__main__":
-    main()
+for i in range(H):
+    for j in range(W):
+        if S[i][j] == "#":
+            continue
+        for k in range(H):
+            for l in range(W):
+                if S[k][l] == "#":
+                    continue
+                cnt = 0
+                for a in range(H):
+                    for b in range(W):
+                        if S[a][b] == "#":
+                            continue
+                        if abs(i - a) + abs(j - b) <= D or abs(k - a) + abs(l - b) <= D:
+                            cnt += 1
+                ans = max(ans, cnt)
+print(ans)
